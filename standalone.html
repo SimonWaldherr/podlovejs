@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Podlove Web Player Standalone</title>
+
+	<link href="mediaelement/mediaelementplayer.min.css" rel="stylesheet" media="screen" type="text/css" />
+	<link href="podlove-web-player.css" rel="stylesheet" media="screen" type="text/css" />
+
+	<script src="libs/html5shiv.js"></script>
+	<script src="libs/jquery-1.7.2.min.js"></script>
+	<script src="mediaelement/mediaelement-and-player.min.js"></script>
+	<script src="podlove-web-player.js"></script>
+</head>
+
+<body>
+
+
+	<audio id="testplayer">
+		<source src="samples/podlove-test-track-feat-kraftfuttermischwerk.mp4" type="audio/mp4" />
+		<source src="samples/podlove-test-track-feat-kraftfuttermischwerk.m4a" type="audio/mp4" />
+		<source src="samples/podlove-test-track-feat-kraftfuttermischwerk.oga" type="audio/ogg" />
+		<source src="samples/podlove-test-track-feat-kraftfuttermischwerk.opus" type="audio/ogg" />
+		<source src="samples/podlove-test-track-feat-kraftfuttermischwerk.mp3" type="audio/mpeg" />
+
+		<h3 data-pwp="title">PWP001 – One big title</h3>
+		<h4 data-pwp="subtitle">Here goes the subtitle</h4>
+		<p data-pwp="summary">Here’s for the summay type of people who feel like having to describe what’s in this recording. There should be things in here and other things. But mostly words.</p>
+		<div data-pwp="chapters">
+			00:00:00.000 Dateityp
+			00:00:04.484 Begrüßung
+			00:00:15.234 Stay Pretty
+			00:05:51.484 Alte Juwel faet. Rudi Stöher
+			00:11:03.984 Paarfüßig
+			00:17:02.734 Rebellja feat. Bastai
+			00:22:31.984 Runaway (Silence Edit)
+			00:27:47.234 Birkenholzkompott
+			00:34:50.859 Und Unterm Bassphalt Der Strand
+			00:40:36.484 Runaway (Vox Edit) feat. Bastai
+			00:45:52.234 Runaway (P.Laoss Remix) feat. P.Laoss
+			00:53:41.859 Ein Anlieger Frei
+			00:58:34.484 Guten Abend
+		</div>
+	</audio>
+	<script>
+		$('#testplayer').podlovewebplayer({
+			duration: '3522',
+			poster: 'samples/posterimage.jpg',
+			width: '640',
+			chapterlinks: 'all'
+		});
+	</script>
+	
+
+	
+</body>
+</html>

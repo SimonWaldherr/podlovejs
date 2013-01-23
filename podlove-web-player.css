@@ -1,0 +1,313 @@
+.mediaelementjs_player_container * {
+	font: normal 11px/1.25 helvetica, arial, sans-serif;
+}
+
+.mejs-container.mejs-audio {
+	min-height: 30px;
+}
+
+.mediaelementjs_player_container {
+	clear: both;
+	position: relative;
+	padding-bottom: 1.5em;
+}
+
+.mediaelementjs_player_container:after {
+	content: ".";
+	color: #fff;
+	font-size: 1px;
+	height: 1px;
+	display: block;
+	overflow: hidden;
+	clear: both;
+}
+
+.mediaelementjs_player_container .pwp_chapters {
+	display: none; /* only show if js works */
+	margin-bottom: 0!important;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+.mediaelementjs_player_container .pwp_chapters thead,
+.mediaelementjs_player_container .pwp_chapters caption {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.mediaelementjs_player_container .pwp_chapters tr.active {
+	background: #a9cbdf;
+}
+
+.mediaelementjs_player_container .pwp_chapters tr td {
+	padding: 5px;
+	vertical-align: middle;
+	border-bottom: 1px solid #e9e9e9;
+
+}
+
+.mediaelementjs_player_container .pwp_chapters tr td.title {
+	padding-top: 7px;
+}
+
+.mediaelementjs_player_container .pwp_chapters tr td.timecode {
+	text-align: right;
+	white-space: nowrap;
+}
+
+.mediaelementjs_player_container .pwp_chapters a.deeplink {
+	background: url(img/deeplink.png) 50% 30% no-repeat;
+	background-size: 85%;
+	float: right;
+	width: 1em;
+	margin-left: 0.5em;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.mediaelementjs_player_container .pwp_chapters a.deeplink:focus,
+.mediaelementjs_player_container .pwp_chapters a.deeplink:hover,
+.mediaelementjs_player_container .pwp_chapters a.deeplink:active {
+	opacity: 0.5;
+}
+
+.podlovemeta {
+	position: relative;
+	background: #000;
+	height: 100px;
+	margin-bottom: 1px;
+	-webkit-border-top-left-radius: 15px;
+	-webkit-border-top-right-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-topright: 15px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	background: url(mediaelement/background.png);
+	background: rgba(0, 0, 0, 0.9);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50, 50, 50, 0.9)), to(rgba(0, 0, 0, 0.9)));
+	background: -webkit-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+	background: -moz-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+	background: -o-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+	background: -ms-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+	background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+}
+
+/*
+.podlovemeta + .summary + .mejs-container .mejs-playpause-button,
+.podlovemeta + .mejs-container .mejs-playpause-button {
+	width: 10px;
+}
+
+.podlovemeta + .summary + .mejs-container .mejs-playpause-button *,
+.podlovemeta + .mejs-container .mejs-playpause-button * {
+	display: none;
+}
+
+.mejs-duration-container {
+	margin-right: 20px;
+}
+*/
+
+.podlovemeta .bigplay {
+	float: left;
+	width: 100px;
+	height: 100px;
+	position: relative;
+	z-index: 78;
+	text-indent: -100em;
+	background: url(img/bigplay.png) 0 0 no-repeat;
+}
+
+.podlovemeta .bigplay:focus,
+.podlovemeta .bigplay:hover,
+.podlovemeta .bigplay:active {
+	background-position: 0 -100px;
+}
+
+.podlovemeta .bigplay.playing {
+	background-position: -100px 0;
+}
+
+.podlovemeta .bigplay.playing:focus,
+.podlovemeta .bigplay.playing:hover,
+.podlovemeta .bigplay.playing:active {
+	background-position: -100px -100px;
+}
+
+.podlovemeta .coverart {
+	display: inline;
+}
+
+.podlovemeta .coverart img {
+	float: left;
+	margin-right: 10px;
+	height: 100px;
+}
+
+.podlovemeta h3 {
+	clear: none;
+	color: #eee!important;
+	padding: 7px 0;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0!important;
+	text-transform: none;
+	letter-spacing: 0;
+}
+
+.podlovemeta .subtitle {
+	margin-right: 7px;
+	font-size: 12px;
+	color: #eee!important;
+}
+
+.podlovemeta .subtitle strong{
+	color: #ccc;
+	font-size: 13px!important;
+}
+
+.podlovemeta + .summary {
+	overflow: hidden;
+	padding: 0px 10px;
+	margin-top: -1px;
+	height: 1px;
+	font-size: 12px;
+	line-height: 1.5;
+	color: #000;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	background: url(mediaelement/background.png);
+background: rgba(0, 0, 0, 0.9);
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(150, 150, 150, 0.9)), to(rgba(0, 0, 0, 0.9)));
+background: -webkit-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+background: -moz-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+background: -o-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+background: -ms-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+}
+
+.podlovemeta + .summary.active {
+	min-height: 38px;
+	height: auto;
+	padding: 20px 10px;
+}
+
+.podlovemeta .summary a.closewindow,
+.podlovemeta a.infowindow {
+	cursor: pointer;
+	z-index: 111;
+	padding: 0 10px;
+	margin: 0;
+	position: absolute;
+	right: 9px;
+	bottom: 7px;
+	display: block;
+	height: 16px;
+	background: #fff;
+	color: #000;
+	font-size: 12px;
+	text-transform: uppercase!important;
+	letter-spacing: 1px;
+	text-align: center;
+	line-height: 16px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	-o-border-radius: 8px;
+	border-radius: 8px;
+	text-decoration: none;
+}
+
+.podlovemeta .summary a.closewindow:focus,
+.podlovemeta .summary a.closewindow:hover,
+.podlovemeta .summary a.closewindow:active,
+.podlovemeta a.infowindow:focus,
+.podlovemeta a.infowindow:hover,
+.podlovemeta a.infowindow.active {
+	background: #3a859a;
+	color: #fff;
+	text-decoration: none;
+}
+
+
+.pwp_chapters * {
+	font-size: 13px;
+}
+
+.pwp_chapters .chapterplay {
+	width: 25px;
+	padding-right: 0;
+}
+
+.pwp_chapters .chapterplay > a {
+	display: block;
+	border: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	width: 25px;
+	height: 25px;
+	background: #ddd;
+	-webkit-border-radius: 13px;
+	-moz-border-radius: 13px;
+	-o-border-radius: 13px;
+	border-radius: 13px;
+	cursor: pointer;
+}
+
+.pwp_chapters .chapterplay > a.disabled {
+	cursor: wait;
+}
+
+.pwp_chapters .loaded .chapterplay > a {
+	background: #000;
+}
+
+.pwp_chapters .chapterplay > a:focus,
+.pwp_chapters .chapterplay > a:hover,
+.pwp_chapters .chapterplay > a:active,
+.pwp_chapters .active .chapterplay > a,
+.pwp_chapters .loaded .chapterplay > a:focus,
+.pwp_chapters .loaded .chapterplay > a:hover,
+.pwp_chapters .loaded .chapterplay > a:active {
+	background: #3a859a;
+	cursor: pointer;
+}
+
+.pwp_chapters .chapterplay a.disabled:focus,
+.pwp_chapters .chapterplay a.disabled:hover,
+.pwp_chapters .chapterplay a.disabled:active {
+	background: #ddd;
+	cursor: wait;
+}
+
+.pwp_chapters .chapterplay a[rel=player] span {
+	display: block;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	position: relative;
+	top: 4px;
+	text-indent: -1000px;
+	margin: 0 0 0 6px;
+	background: transparent url(mediaelement/controls.png) no-repeat 0 0;
+}
+
+.pwp_chapters .active .chapterplay a[rel=player] span {
+	background-position: -1px -16px;
+}
+
+.pwp_chapters .paused .chapterplay a[rel=player] span {
+	background-position: 0 0;
+}

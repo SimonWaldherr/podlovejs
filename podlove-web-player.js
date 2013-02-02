@@ -184,11 +184,11 @@ var PODLOVE = PODLOVE || {};
 	$.fn.podlovewebplayer = PODLOVE.web_player = function web_player(params, player) {
 
 		// recursion: handle every element in the jquery collection
-     	if (this instanceof jQuery){
+     	if (this instanceof jQuery) {
  			this.each(function(){
  				return web_player(params, this);
  			});
-		} else {
+		} else if (typeof player !== 'undefined' && typeof params !== 'undefined') {
 
 			//handle default values for params
 			var defaults = {
@@ -201,7 +201,9 @@ var PODLOVE = PODLOVE || {};
 					params[key] = value;
 				}
 			});
-			params.width = params.width.replace('px','');
+			if (typeof params.width !== 'undefined') {
+				params.width = params.width.replace('px','');
+			}
 
 			// MEJS options defaults (taken from mediaelementjs.com, slightly adopted for podcasting needs)
 			var mejsoptions = {
@@ -227,6 +229,7 @@ var PODLOVE = PODLOVE || {};
 			}
 
 			//transfer width/height to the correct mejs counterparts	
+
 			if (player.tagName == "AUDIO") {
 				mejsoptions.audioWidth = params.width;
 			} else {

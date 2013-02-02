@@ -3,8 +3,6 @@
 <div class="wrap">
 <h2>Podlove Web Player Options</h2>
 
-<p>See <a href="http://mediaelementjs.com/">MediaElementjs.com</a> for more details on how the HTML5 player and Flash fallbacks work.</p>
-
 <form method="post" action="options.php">
 
 <?php settings_fields('podlovewebplayer_options'); ?>
@@ -35,7 +33,7 @@ function podlovewebplayer_register_settings() {
   add_settings_section( 'podlovewebplayer_enclosures', 'Enclosures', false, 'podlovewebplayer' );
   add_settings_field( 
     'podlovewebplayer_enclosure_detect', 
-    '<label for="pwpenclosures1">Turn enclosures to players</label>',
+    'Turn enclosures to players',
     function(){ 
       $options = get_option('podlovewebplayer_options');
       $checked = "";
@@ -43,7 +41,7 @@ function podlovewebplayer_register_settings() {
         $checked = "checked ";
       print "<input id='pwpenclosures1' name='podlovewebplayer_options[enclosure_detect]' 
         $checked type='checkbox' value='1' />";
-    }, 'podlovewebplayer', 'podlovewebplayer_enclosures');
+    }, 'podlovewebplayer', 'podlovewebplayer_enclosures', array( 'label_for' => 'pwpenclosures1' ));
   
   /*
   add_settings_field( 'podlovewebplayer_enclosures', 'pwp_enclosure_force' );

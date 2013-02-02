@@ -1,7 +1,8 @@
 // Podlove JavaScript "namespace" object
-var PODLOVE = PODLOVE || {};
 
-(function ($) {
+var PODLOVEWEBPLAYER = PODLOVEWEBPLAYER || {};
+
+(function($) {
 	'use strict';
 
 	var startAtTime = false,
@@ -181,7 +182,7 @@ var PODLOVE = PODLOVE || {};
 
 	/* --------------------- Build actual player ---- */
 
-	$.fn.podlovewebplayer = PODLOVE.web_player = function web_player(params, player) {
+	$.fn.podlovewebplayer = PODLOVEWEBPLAYER.web_player = function web_player(params, player) {
 
 		// recursion: handle every element in the jquery collection
      	if (this instanceof jQuery) {
@@ -203,6 +204,9 @@ var PODLOVE = PODLOVE || {};
 			});
 			if (typeof params.width !== 'undefined') {
 				params.width = params.width.replace('px','');
+			}
+			if (typeof params.audioWidth !== 'undefined') {
+				params.width = params.audioWidth;
 			}
 
 			// MEJS options defaults (taken from mediaelementjs.com, slightly adopted for podcasting needs)
@@ -377,7 +381,7 @@ var PODLOVE = PODLOVE || {};
 
 			// init MEJS to player
 			mejsoptions.success = function (player) {
-					PODLOVE.web_player.addBehavior(player);
+					PODLOVEWEBPLAYER.web_player.addBehavior(player);
 					if (deepLink !== false && players.length === 1) {
 						$('html, body')
 							.delay(150)
@@ -396,7 +400,7 @@ var PODLOVE = PODLOVE || {};
 	 * time position & write current time into address
 	 * @param player object
 	 */
-	PODLOVE.web_player.addBehavior = function (player) {
+	PODLOVEWEBPLAYER.web_player.addBehavior = function (player) {
 
 		var jqPlayer = $(player),
 			layoutedPlayer = jqPlayer,

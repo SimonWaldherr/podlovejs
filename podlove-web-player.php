@@ -48,56 +48,21 @@ define( 'PODLOVEWEBPLAYER_PATH', plugin_dir_path(__FILE__) );
 define( 'PODLOVEWEBPLAYER_MEJS_DIR', PODLOVEWEBPLAYER_DIR . 'mediaelement/' );
 
 
-/* runs when plugin is activated */
+/* Activation and De-Activation */
 
 function podlovewebplayer_install() {
-	add_option( 'pwp_default_video_height', 270 );
-	add_option( 'pwp_default_video_width', 480 );
-	add_option( 'pwp_default_video_type', '' );
-	add_option( 'pwp_default_audio_height', 30 );
-	add_option( 'pwp_default_audio_width', 400 );
-	add_option( 'pwp_default_audio_type', '' );
+	add_option( 'podlovewebplayer_options' );
+}
+function podlovewebplayer_remove() {
+	delete_option( 'podlovewebplayer_options' );
 }
 register_activation_hook( __FILE__, 'podlovewebplayer_install' );
-
-
-/* runs on plugin deactivation */
-
-function podlovewebplayer_remove() {
-	delete_option( 'pwp_default_video_height' );
-	delete_option( 'pwp_default_video_width' );
-	delete_option( 'pwp_default_video_type' );
-	delete_option( 'pwp_default_audio_height' );
-	delete_option( 'pwp_default_audio_width' );
-	delete_option( 'pwp_default_audio_type' );
-}
 register_deactivation_hook( __FILE__, 'podlovewebplayer_remove' );
 
 
 /* create custom plugin settings menu */
 
 include_once( PODLOVEWEBPLAYER_PATH . 'settings.php' );
-
-function podlovewebplayer_create_menu() {
-	add_options_page( 
-		'Podlove Web Player Options', 
-		'Podlove Web Player', 
-		'administrator', 
-		__FILE__, 
-		'podlovewebplayer_settings_page' 
-	);
-	add_action( 'admin_init', 'podlovewebplayer_register_settings' );
-}
-add_action( 'admin_menu', 'podlovewebplayer_create_menu' );
-
-function podlovewebplayer_register_settings() {
-	register_setting( 'pwp_settings', 'pwp_default_video_height' );
-	register_setting( 'pwp_settings', 'pwp_default_video_width' );
-	register_setting( 'pwp_settings', 'pwp_default_video_type' );
-	register_setting( 'pwp_settings', 'pwp_default_audio_height' );
-	register_setting( 'pwp_settings', 'pwp_default_audio_width' );
-	register_setting( 'pwp_settings', 'pwp_default_audio_type' );
-}
 
 
 /* embed javascript files */
@@ -137,7 +102,7 @@ add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );
 
 
 
-/* ---------------------------------------- return player on shortcode */
+/* ---------------------------------------- render player on shortcode */
 
 function podlovewebplayer_render_player( $tag_name, $atts ) {
 
@@ -247,28 +212,27 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	// ------------------- prepare controls/features
 
 	if ( $tag_name == 'video' || ( !$poster && !$title && !$subtitle && !$summary ) ) {
-		$features[] = '"playpause"';
+		$features[] = "'playpause'";
 	}
 	if ( $progress == 'true' ) {
-		$features[] = '"current"';
-		$features[] = '"progress"';
+		$features[] = "'current'";
+		$features[] = "'progress'";
 	}
 	if ( $duration == 'true' ) {
-		$features[] = '"duration"';
+		$features[] = "'duration'";
 	}
 	if ( $volume == 'true' ) {
-		$features[] = '"volume"';
+		$features[] = "'volume'";
 	}
-	if ($loop) {
-		$features[] .= '"loop"';
+	if ( $loop ) {
+		$features[] .= "'loop'";
 	}
-	$features[] = '"tracks"';
+	$features[] = "'tracks'";
 	if ( $fullscreen == 'true' ) {
-		$features[] = '"fullscreen"';
+		$features[] = "'fullscreen'";
 	}
-	$temp[] = '"features":[' . implode(',', $features) . ']';
-	$features_string = !empty($temp) ? '{' . implode(',', $temp) . '}' : '';
-	$features_string = str_replace('"', '\'', $features_string);
+	$temp[] = 'features: [' . implode(',', $features) . ']';
+	$features_string = !empty($temp) ? implode(',', $temp) : '';
 
 	// ------------------- prepare player dimensions
 	if ($tag_name == 'audio') {
@@ -301,25 +265,26 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	if ($chapters = podlovewebplayer_render_chapters($chapters)) {
 		$richplayer .= '<div data-pwp="chapters">'.$chapters.'</div>';
 	}
-	if ($poster) {
-		$richplayer .= '<div class="coverart"><img src="'.htmlspecialchars($poster).'" alt=""/></div>';
-	}
+
 
 	// ------------------- prepare podlove call inits
 
 	$init_options = "";
 	if ( $poster ) {
-		$init_options .= "\n  poster: '".htmlspecialchars($poster)."',";
+		$init_options .= "\n  poster: '" . htmlspecialchars($poster) . "',";
 	}
 	if ( $duration ) {
-		$init_options .= "\n  duration: '".$duration."',";
+		$init_options .= "\n  duration: '" . $duration . "',";
 	}
 	if ( $loop ) {
-		$init_options .= "\n  loop: '".$loop."',";
+		$init_options .= "\n  loop: '" . $loop . "',";
 	}
 	if ( $tag_name == 'audio' ) {
-		$init_options .= "\n audioWidth: '". $width."',";
-		$init_options .= "\n audioHeight: '" . $height."',";
+		$init_options .= "\n  audioWidth: '". $width . "',";
+		$init_options .= "\n  audioHeight: '" . $height . "',";
+	}
+	if ( !empty( $features_string ) ) {
+		$init_options .= "\n  " . $features_string . ",";
 	}
 	$init_options .= "\n  chapterlinks: '".$chapterlinks."'";
 
@@ -327,13 +292,12 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	// ------------------- build actual html player code
 	
 	$return = <<<_end_
-	<{$tag_name} id="wp_pwp_{$podlovewebplayer_index}" {$dimensions} controls {$attributes_string} data-mejsoptions="{$features_string}">
+	<{$tag_name} id="podlovewebplayer_{$podlovewebplayer_index}" {$dimensions} controls {$attributes_string}>
 		{$sources_string}
 		{$richplayer}
 	</{$tag_name}>
 _end_;
-	$return .= "\n\n<script>jQuery('#wp_pwp_{$podlovewebplayer_index}').podlovewebplayer({{$init_options}});</script>\n";
-
+	$return .= "\n\n<script>jQuery('#podlovewebplayer_{$podlovewebplayer_index}').podlovewebplayer({{$init_options}});</script>\n";
 	$podlovewebplayer_index++;
 	return $return;
 }

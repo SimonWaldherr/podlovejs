@@ -327,12 +327,11 @@
 					} else {
 						this.end = params.duration;
 						this.duration = generateTimecode([Math.round(params.duration-this.start)]);
-						
 					}
 				}
 
 				// deeplink, start and end
-				var deeplink_chap = '#t=' + this.start + (this.end != false ? ',' + this.end : '');
+				var deeplink_chap = '#t=' + generateTimecode( [this.start, this.end] );
 				var rowstring = '<tr data-start="'+this.start+'" data-end="'+this.end+'">';
 
 				if (params.chapterlinks != 'false') {
@@ -482,15 +481,6 @@
 				// handle browser history navigation
 				$(window).bind('hashchange onpopstate', checkCurrentURL);
 
-				/* Why do we need this? It leads to error ticket #40 on github
-				// handle links on the page
-				// links added later are not handled!
-				$('a').bind('click', function () {
-					// if we stay on the page after clicking a link
-					// check if theres a new deeplink
-					window.setTimeout(checkCurrentURL, 100);
-				});
-				*/
 			}
 
 			// always update Chaptermarks though

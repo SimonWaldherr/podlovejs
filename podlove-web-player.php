@@ -68,7 +68,7 @@ function podlovewebplayer_add_scripts() {
 		wp_enqueue_script( 
 			'mediaelementjs', 
 			PODLOVEWEBPLAYER_MEJS_DIR . 'mediaelement-and-player.min.js', 
-			array('jquery'), '2.9.1', false 
+			array('jquery'), '2.10.3', false 
 		);
 		wp_enqueue_script( 
 			'ba_hashchange', 
@@ -105,7 +105,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	global $podlovewebplayer_index;
 	$attributes = array();
 	$sources = array();
-	$options = array();
+	$wp_options = get_option('podlovewebplayer_options');
 
 	extract(shortcode_atts(array(
 		'src' => '',
@@ -117,8 +117,8 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'ogg' => '',
 		'opus' => '', // new file type. not part of mejs, but works anyway
 		'poster' => '',
-		'width' => get_option( 'pwp_default_' . $tag_name . '_width' ),
-		'height' => get_option( 'pwp_default_' . $tag_name . '_height' ),
+		'width' => $wp_options[ $tag_name . '_width' ],
+		'height' => $wp_options[ $tag_name . '_height' ],
 		'type' => '',
 		'preload' => 'none',
 		'autoplay' => '',
@@ -141,8 +141,8 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 
 	if ( $type ) {
 		$attributes[] = 'type="' . $type . '"';
-	} elseif (get_option('pwp_default_' . $tag_name . '_type')) {
-		$attributes[] = 'type="' . get_option('pwp_default_' . $tag_name . '_type').'"';
+	} elseif ( $wp_options[$tag_name . '_type'] ) {
+		$attributes[] = 'type="' . $wp_options[$tag_name . '_type'] . '"';
 	}
 
 	if ( $src ) {
@@ -369,21 +369,23 @@ function podlovewebplayer_get_enclosed( $post_id ) {
 
 function podlovewebplayer_enclosure( $content ) {
 	global $post;
+	$wp_options = get_option('podlovewebplayer_options');
 
 	if ( $enclosures = podlovewebplayer_get_enclosed( $post->ID ) // do we have enclosures in this post?
 		AND (
-			get_option( 'pwp_enclosure_force' ) == true) // forced to render enclosures by option
+			isset($wp_options['enclosure_force']) // forced to render enclosures by option
 			OR 
-			(!strpos($content, "[podloveaudio") AND 
-			 !strpos($content, "[podlovevideo") AND
-			 !strpos($content, "[audio") AND 
-			 !strpos($content, "[video")) // there is no manual shortcode
-		) 
+			( !strpos( $content, "[podloveaudio" ) AND 
+			  !strpos( $content, "[podlovevideo" ) AND
+			  !strpos( $content, "[audio" ) AND 
+			  !strpos( $content, "[video" ) ) // there is no manual shortcode
+		)
+	) 
 	{
 		foreach( $enclosures as $enclosure ) {
 			$type = substr( $enclosure[2], 0, strpos( $enclosure[2], "/" ) );
 			$pwpcode = do_shortcode( '[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'"]' );
-			if ( get_option( 'pwp_enclosure_bottom' ) == true) {
+			if ( isset( $wp_options['enclosure_bottom'] ) ) {
 				$content = $content . $pwpcode;
 			} else {
 				$content = $pwpcode . $content;
@@ -393,7 +395,9 @@ function podlovewebplayer_enclosure( $content ) {
 	return $content;
 }
 
-if( !@is_feed() && get_option( 'pwp_enclosure_detect' ) == true ) {
+
+$wp_options = get_option('podlovewebplayer_options');
+if( !@is_feed() && isset( $wp_options['enclosure_detect'] ) ) {
 	// fire auto-detect script before regular shortcode, which has prio 11
 	add_filter( 'the_content', 'podlovewebplayer_enclosure', 10 );
 }

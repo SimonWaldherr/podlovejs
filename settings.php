@@ -51,16 +51,28 @@ function podlovewebplayer_register_settings() {
   );
 
   add_settings_field( 
+    'podlovewebplayer_audio_height',
+    'Audio height',
+    function(){ 
+      $options = get_option('podlovewebplayer_options');
+      if ( !isset( $options['audio_width'] ) )
+        $options['audio_height'] = "30";
+      print "<input id='pwpaudio2' name='podlovewebplayer_options[audio_height]' 
+        value='".$options['audio_height']."' style='width:3em;' /> px&nbsp;&nbsp;(keep 30, if unsure)";
+    }, 'podlovewebplayer', 'podlovewebplayer_audio', array( 'label_for' => 'pwpaudio2' )
+  );
+
+  add_settings_field( 
     'podlovewebplayer_audio_type',
     'Default MIME type',
     function(){ 
       $options = get_option('podlovewebplayer_options');
       if ( !isset( $options['audio_type'] ) )
         $options['audio_type'] = "audio/mp3";
-      print "<input id='pwpaudio2' name='podlovewebplayer_options[audio_type]' 
+      print "<input id='pwpaudio3' name='podlovewebplayer_options[audio_type]' 
         value='".$options['audio_type']."' style='width:6em;' />
         &nbsp;&nbsp;(such as \"audio/mp3\")";
-    }, 'podlovewebplayer', 'podlovewebplayer_audio', array( 'label_for' => 'pwpaudio2' )
+    }, 'podlovewebplayer', 'podlovewebplayer_audio', array( 'label_for' => 'pwpaudio3' )
   );
 
   // video section

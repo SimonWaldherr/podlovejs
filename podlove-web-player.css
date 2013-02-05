@@ -299,7 +299,7 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 
 .podlovewebplayer_chapters .chapterplay a[rel=player] span {
 	display: block;
-	width: 16px;
+	width: 14px;
 	height: 16px;
 	overflow: hidden;
 	position: relative;

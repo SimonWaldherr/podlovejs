@@ -152,9 +152,9 @@ Disables the fullscreen button for video:
     
 = duration =
 
-Disables the duration output:
+Enables display of duration without having to load the media file. Use seconds as a unit:
     
-    [podlovevideo duration="false"]   
+    [podlovevideo duration="355"]   
     
 = volume = 
 
@@ -227,10 +227,10 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 = 1.3 =
 * refactored large parts of the code
-* added standalone player, works without PHP
+* added standalone player, works without PHP (example HTML/JS included)
 * moved lots of functionality from PHP to JS
 * cleaned variables and removed old stuff
-* new settings area (again, now WordPress API compliant)
+* new settings area (yes, again. But now WordPress API compliant)
 * added "duration" parameter for displaying duration of last chapter
 * added sample audio files for testing purposes
 * some minor CSS improvements

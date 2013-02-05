@@ -201,7 +201,7 @@
 			alwaysShowControls: false,
 			iPadUseNativeControls: false,
 			iPhoneUseNativeControls: false, 
-			AndroidUseNativeControls: true,
+			AndroidUseNativeControls: false,
 			alwaysShowHours: false,
 			showTimecodeFrameCount: false,
 			framesPerSecond: 25,

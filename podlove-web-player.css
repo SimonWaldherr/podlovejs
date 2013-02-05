@@ -7,8 +7,13 @@
 	min-height: 30px;
 }
 
+
 .mejs-container .mejs-controls > div:first-child {
 	margin-left: 8px;
+}
+
+.mejs-container .mejs-controls > div.mejs-duration-container:last-child {
+	margin-right: 5px;
 }
 
 .podlovewebplayer_wrapper {

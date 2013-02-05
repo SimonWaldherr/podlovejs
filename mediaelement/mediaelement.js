@@ -8,14 +8,14 @@
 * Can play MP4 (H.264), Ogg, WebM, FLV, WMV, WMA, ACC, and MP3
 *
 * Copyright 2010-2012, John Dyer (http://j.hn)
-* Dual licensed under the MIT or GPL Version 2 licenses.
+* License: MIT
 *
 */
 // Namespace
 var mejs = mejs || {};
 
 // version number
-mejs.version = '2.9.5';
+mejs.version = '2.10.3';
 
 // player number (for missing, same id attr)
 mejs.meIndex = 0;
@@ -33,7 +33,7 @@ mejs.plugins = {
 		{version: null, types: ['video/youtube', 'video/x-youtube']}
 	],
 	vimeo: [
-		{version: null, types: ['video/vimeo']}
+		{version: null, types: ['video/vimeo', 'video/x-vimeo']}
 	]
 };
 
@@ -303,6 +303,10 @@ mejs.MediaFeatures = {
 		t.isGecko = (ua.match(/gecko/gi) !== null) && !t.isWebkit;
 		t.isOpera = (ua.match(/opera/gi) !== null);
 		t.hasTouch = ('ontouchstart' in window);
+		
+		// borrowed from Modernizr
+		t.svg = !! document.createElementNS &&
+				!! document.createElementNS('http://www.w3.org/2000/svg','svg').createSVGRect;
 
 		// create HTML5 media elements for IE before 9, get a <video> element for fullscreen detection
 		for (i=0; i<html5Elements.length; i++) {
@@ -373,7 +377,6 @@ mejs.MediaFeatures = {
 };
 mejs.MediaFeatures.init();
 
-
 /*
 extension methods to <video> or <audio> object to bring it into parity with PluginMediaElement (see below)
 */
@@ -418,6 +421,7 @@ mejs.HtmlMediaElement = {
 				media = url[i];
 				if (this.canPlayType(media.type)) {
 					this.src = media.src;
+					break;
 				}
 			}
 		}
@@ -437,6 +441,7 @@ mejs.PluginMediaElement = function (pluginid, pluginType, mediaUrl) {
 	this.pluginType = pluginType;
 	this.src = mediaUrl;
 	this.events = {};
+	this.attributes = {};
 };
 
 // JavaScript values and ExternalInterface methods that match HTML5 video properties methods
@@ -565,6 +570,7 @@ mejs.PluginMediaElement.prototype = {
 				if (this.canPlayType(media.type)) {
 					this.pluginApi.setSrc(mejs.Utility.absolutizeUrl(media.src));
 					this.src = mejs.Utility.absolutizeUrl(url);
+					break;
 				}
 			}
 		}
@@ -677,7 +683,6 @@ mejs.PluginMediaElement.prototype = {
 	// end: fake events
 	
 	// fake DOM attribute methods
-	attributes: {},
 	hasAttribute: function(name){
 		return (name in this.attributes);  
 	},
@@ -743,9 +748,6 @@ mejs.MediaPluginBridge = {
 			i,
 			bufferedTime,
 			pluginMediaElement = this.pluginMediaElements[id];
-
-		pluginMediaElement.ended = false;
-		pluginMediaElement.paused = true;
 
 		// fake event object to mimic real HTML media event.
 		e = {
@@ -899,7 +901,8 @@ mejs.HtmlMediaElementShim = {
 			pluginName,
 			pluginVersions,
 			pluginInfo,
-			dummy;
+			dummy,
+			media;
 			
 		// STEP 1: Get URL and type from <video src> or <source src>
 
@@ -929,7 +932,11 @@ mejs.HtmlMediaElementShim = {
 				if (n.nodeType == 1 && n.tagName.toLowerCase() == 'source') {
 					src = n.getAttribute('src');
 					type = this.formatType(src, n.getAttribute('type'));
-					mediaFiles.push({type:type, url:src});
+					media = n.getAttribute('media');
+
+					if (!media || !window.matchMedia || (window.matchMedia && window.matchMedia(media).matches)) {
+						mediaFiles.push({type:type, url:src});
+					}
 				}
 			}
 		}
@@ -1060,6 +1067,7 @@ mejs.HtmlMediaElementShim = {
 	},
 	
 	getTypeFromFile: function(url) {
+		url = url.split('?')[0];
 		var ext = url.substring(url.lastIndexOf('.') + 1);
 		return (/(mp4|m4v|ogg|ogv|webm|webmv|flv|wmv|mpeg|mov)/gi.test(ext) ? 'video' : 'audio') + '/' + this.getTypeFromExtension(ext);
 	},
@@ -1097,7 +1105,7 @@ mejs.HtmlMediaElementShim = {
 
 		errorContainer.innerHTML = (poster !== '') ?
 			'<a href="' + playback.url + '"><img src="' + poster + '" width="100%" height="100%" /></a>' :
-			'<a href="' + playback.url + '"><span>Download File</span></a>';
+			'<a href="' + playback.url + '"><span>' + mejs.i18n.t('Download File') + '</span></a>';
 
 		htmlMediaElement.parentNode.insertBefore(errorContainer, htmlMediaElement);
 		htmlMediaElement.style.display = 'none';
@@ -1277,6 +1285,9 @@ mejs.HtmlMediaElementShim = {
 				
 				pluginMediaElement.vimeoid = playback.url.substr(playback.url.lastIndexOf('/')+1);
 				
+				container.innerHTML ='<iframe src="http://player.vimeo.com/video/' + pluginMediaElement.vimeoid + '?portrait=0&byline=0&title=0" width="' + width +'" height="' + height +'" frameborder="0"></iframe>';
+				
+				/*
 				container.innerHTML =
 					'<object width="' + width + '" height="' + height + '">' +
 						'<param name="allowfullscreen" value="true" />' +
@@ -1285,7 +1296,8 @@ mejs.HtmlMediaElementShim = {
 						'<param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=' + pluginMediaElement.vimeoid  + '&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" />' +
 						'<embed src="//vimeo.com/moogaloop.swf?api=1&amp;clip_id=' + pluginMediaElement.vimeoid + '&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="' + width + '" height="' + height + '"></embed>' +
 					'</object>';
-					
+					*/
+									
 				break;			
 		}
 		// hide original element
@@ -1511,7 +1523,7 @@ mejs.YouTubeApi = {
 		// load the youtube video
 		player.cueVideoById(settings.videoId);
 		
-		var callbackName = settings.containerId + '_callback'
+		var callbackName = settings.containerId + '_callback';
 		
 		window[callbackName] = function(e) {
 			mejs.YouTubeApi.handleStateChange(e, player, pluginMediaElement);
@@ -1787,7 +1799,8 @@ window.MediaElement = mejs.MediaElement;
     exports.de = {
         "Fullscreen" : "Vollbild",
         "Go Fullscreen" : "Vollbild an",
-        "Turn off Fullscreen" : "Vollbild aus"
+        "Turn off Fullscreen" : "Vollbild aus",
+        "Close" : "Schließen"
     };
 
 }(mejs.i18n.locale.strings));

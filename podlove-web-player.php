@@ -12,10 +12,6 @@ Author: Gerrit van Aaken and others
 Version: 1.3
 Author URI: http://praegnanz.de
 License: GPLv3, MIT
-*/
-
-/*  
-Copyleft 2012–13  Gerrit van Aaken  (email : gerrit@praegnanz.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 

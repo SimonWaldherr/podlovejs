@@ -1,4 +1,4 @@
-.mediaelementjs_player_container * {
+.podlovewebplayer_wrapper * {
 	font: normal 11px/1.25 helvetica, arial, sans-serif;
 }
 
@@ -6,13 +6,13 @@
 	min-height: 30px;
 }
 
-.mediaelementjs_player_container {
+.podlovewebplayer_wrapper {
 	clear: both;
 	position: relative;
 	padding-bottom: 1.5em;
 }
 
-.mediaelementjs_player_container:after {
+.podlovewebplayer_wrapper:after {
 	content: ".";
 	color: #fff;
 	font-size: 1px;
@@ -22,7 +22,7 @@
 	clear: both;
 }
 
-.mediaelementjs_player_container .pwp_chapters {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters {
 	display: none; /* only show if js works */
 	margin-bottom: 0!important;
 	width: 100%;
@@ -32,8 +32,8 @@
 /*
  * Hide only visually, but have it available for screenreaders: h5bp.com/v
  */
-.mediaelementjs_player_container .pwp_chapters thead,
-.mediaelementjs_player_container .pwp_chapters caption {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters thead,
+.podlovewebplayer_wrapper .podlovewebplayer_chapters caption {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -44,27 +44,27 @@
     width: 1px;
 }
 
-.mediaelementjs_player_container .pwp_chapters tr.active {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active {
 	background: #a9cbdf;
 }
 
-.mediaelementjs_player_container .pwp_chapters tr td {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td {
 	padding: 5px;
 	vertical-align: middle;
 	border-bottom: 1px solid #e9e9e9;
 
 }
 
-.mediaelementjs_player_container .pwp_chapters tr td.title {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.title {
 	padding-top: 7px;
 }
 
-.mediaelementjs_player_container .pwp_chapters tr td.timecode {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.timecode {
 	text-align: right;
 	white-space: nowrap;
 }
 
-.mediaelementjs_player_container .pwp_chapters a.deeplink {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters a.deeplink {
 	background: url(img/deeplink.png) 50% 30% no-repeat;
 	background-size: 85%;
 	float: right;
@@ -75,13 +75,13 @@
 	overflow: hidden;
 }
 
-.mediaelementjs_player_container .pwp_chapters a.deeplink:focus,
-.mediaelementjs_player_container .pwp_chapters a.deeplink:hover,
-.mediaelementjs_player_container .pwp_chapters a.deeplink:active {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters a.deeplink:focus,
+.podlovewebplayer_wrapper .podlovewebplayer_chapters a.deeplink:hover,
+.podlovewebplayer_wrapper .podlovewebplayer_chapters a.deeplink:active {
 	opacity: 0.5;
 }
 
-.podlovemeta {
+.podlovewebplayer_meta {
 	position: relative;
 	background: #000;
 	height: 100px;
@@ -103,13 +103,13 @@
 }
 
 /*
-.podlovemeta + .summary + .mejs-container .mejs-playpause-button,
-.podlovemeta + .mejs-container .mejs-playpause-button {
+.podlovewebplayer_meta + .summary + .mejs-container .mejs-playpause-button,
+.podlovewebplayer_meta + .mejs-container .mejs-playpause-button {
 	width: 10px;
 }
 
-.podlovemeta + .summary + .mejs-container .mejs-playpause-button *,
-.podlovemeta + .mejs-container .mejs-playpause-button * {
+.podlovewebplayer_meta + .summary + .mejs-container .mejs-playpause-button *,
+.podlovewebplayer_meta + .mejs-container .mejs-playpause-button * {
 	display: none;
 }
 
@@ -118,7 +118,7 @@
 }
 */
 
-.podlovemeta .bigplay {
+.podlovewebplayer_meta .bigplay {
 	float: left;
 	width: 100px;
 	height: 100px;
@@ -128,33 +128,33 @@
 	background: url(img/bigplay.png) 0 0 no-repeat;
 }
 
-.podlovemeta .bigplay:focus,
-.podlovemeta .bigplay:hover,
-.podlovemeta .bigplay:active {
+.podlovewebplayer_meta .bigplay:focus,
+.podlovewebplayer_meta .bigplay:hover,
+.podlovewebplayer_meta .bigplay:active {
 	background-position: 0 -100px;
 }
 
-.podlovemeta .bigplay.playing {
+.podlovewebplayer_meta .bigplay.playing {
 	background-position: -100px 0;
 }
 
-.podlovemeta .bigplay.playing:focus,
-.podlovemeta .bigplay.playing:hover,
-.podlovemeta .bigplay.playing:active {
+.podlovewebplayer_meta .bigplay.playing:focus,
+.podlovewebplayer_meta .bigplay.playing:hover,
+.podlovewebplayer_meta .bigplay.playing:active {
 	background-position: -100px -100px;
 }
 
-.podlovemeta .coverart {
+.podlovewebplayer_meta .coverart {
 	display: inline;
 }
 
-.podlovemeta .coverart img {
+.podlovewebplayer_meta .coverart img {
 	float: left;
 	margin-right: 10px;
 	height: 100px;
 }
 
-.podlovemeta h3 {
+.podlovewebplayer_meta h3 {
 	clear: none;
 	color: #eee!important;
 	padding: 7px 0;
@@ -165,18 +165,18 @@
 	letter-spacing: 0;
 }
 
-.podlovemeta .subtitle {
+.podlovewebplayer_meta .subtitle {
 	margin-right: 7px;
 	font-size: 12px;
 	color: #eee!important;
 }
 
-.podlovemeta .subtitle strong{
+.podlovewebplayer_meta .subtitle strong{
 	color: #ccc;
 	font-size: 13px!important;
 }
 
-.podlovemeta + .summary {
+.podlovewebplayer_meta + .summary {
 	overflow: hidden;
 	padding: 0px 10px;
 	margin-top: -1px;
@@ -198,14 +198,14 @@ background: -ms-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 15
 background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 }
 
-.podlovemeta + .summary.active {
+.podlovewebplayer_meta + .summary.active {
 	min-height: 38px;
 	height: auto;
 	padding: 20px 10px;
 }
 
-.podlovemeta .summary a.closewindow,
-.podlovemeta a.infowindow {
+.podlovewebplayer_meta .summary a.closewindow,
+.podlovewebplayer_meta a.infowindow {
 	cursor: pointer;
 	z-index: 111;
 	padding: 0 10px;
@@ -229,28 +229,28 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	text-decoration: none;
 }
 
-.podlovemeta .summary a.closewindow:focus,
-.podlovemeta .summary a.closewindow:hover,
-.podlovemeta .summary a.closewindow:active,
-.podlovemeta a.infowindow:focus,
-.podlovemeta a.infowindow:hover,
-.podlovemeta a.infowindow.active {
+.podlovewebplayer_meta .summary a.closewindow:focus,
+.podlovewebplayer_meta .summary a.closewindow:hover,
+.podlovewebplayer_meta .summary a.closewindow:active,
+.podlovewebplayer_meta a.infowindow:focus,
+.podlovewebplayer_meta a.infowindow:hover,
+.podlovewebplayer_meta a.infowindow.active {
 	background: #3a859a;
 	color: #fff;
 	text-decoration: none;
 }
 
 
-.pwp_chapters * {
+.podlovewebplayer_chapters * {
 	font-size: 13px;
 }
 
-.pwp_chapters .chapterplay {
+.podlovewebplayer_chapters .chapterplay {
 	width: 25px;
 	padding-right: 0;
 }
 
-.pwp_chapters .chapterplay > a {
+.podlovewebplayer_chapters .chapterplay > a {
 	display: block;
 	border: none;
 	padding: 0;
@@ -266,33 +266,33 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	cursor: pointer;
 }
 
-.pwp_chapters .chapterplay > a.disabled {
+.podlovewebplayer_chapters .chapterplay > a.disabled {
 	cursor: wait;
 }
 
-.pwp_chapters .loaded .chapterplay > a {
+.podlovewebplayer_chapters .loaded .chapterplay > a {
 	background: #000;
 }
 
-.pwp_chapters .chapterplay > a:focus,
-.pwp_chapters .chapterplay > a:hover,
-.pwp_chapters .chapterplay > a:active,
-.pwp_chapters .active .chapterplay > a,
-.pwp_chapters .loaded .chapterplay > a:focus,
-.pwp_chapters .loaded .chapterplay > a:hover,
-.pwp_chapters .loaded .chapterplay > a:active {
+.podlovewebplayer_chapters .chapterplay > a:focus,
+.podlovewebplayer_chapters .chapterplay > a:hover,
+.podlovewebplayer_chapters .chapterplay > a:active,
+.podlovewebplayer_chapters .active .chapterplay > a,
+.podlovewebplayer_chapters .loaded .chapterplay > a:focus,
+.podlovewebplayer_chapters .loaded .chapterplay > a:hover,
+.podlovewebplayer_chapters .loaded .chapterplay > a:active {
 	background: #3a859a;
 	cursor: pointer;
 }
 
-.pwp_chapters .chapterplay a.disabled:focus,
-.pwp_chapters .chapterplay a.disabled:hover,
-.pwp_chapters .chapterplay a.disabled:active {
+.podlovewebplayer_chapters .chapterplay a.disabled:focus,
+.podlovewebplayer_chapters .chapterplay a.disabled:hover,
+.podlovewebplayer_chapters .chapterplay a.disabled:active {
 	background: #eee;
 	cursor: wait;
 }
 
-.pwp_chapters .chapterplay a[rel=player] span {
+.podlovewebplayer_chapters .chapterplay a[rel=player] span {
 	display: block;
 	width: 16px;
 	height: 16px;
@@ -306,10 +306,10 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 
 }
 
-.pwp_chapters .active .chapterplay a[rel=player] span {
+.podlovewebplayer_chapters .active .chapterplay a[rel=player] span {
 	background-position: -1px -16px;
 }
 
-.pwp_chapters .paused .chapterplay a[rel=player] span {
+.podlovewebplayer_chapters .paused .chapterplay a[rel=player] span {
 	background-position: 0 0;
 }

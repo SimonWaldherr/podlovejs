@@ -210,22 +210,20 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	if ( $tag_name == 'video' || ( !$poster && !$title && !$subtitle && !$summary ) ) {
 		$features[] = "'playpause'";
 	}
-	if ( $progress == 'true' ) {
-		$features[] = "'current'";
-		$features[] = "'progress'";
-	}
-	if ( $duration == 'true' ) {
-		$features[] = "'duration'";
-	}
-	if ( $volume == 'true' ) {
-		$features[] = "'volume'";
-	}
+
+	$features[] = "'current'";
+	$features[] = "'progress'";
+	$features[] = "'duration'";
+	$features[] = "'tracks'";
+	
 	if ( $loop ) {
 		$features[] .= "'loop'";
 	}
-	$features[] = "'tracks'";
 	if ( $fullscreen == 'true' ) {
 		$features[] = "'fullscreen'";
+	}
+	if ( $volume == 'true' ) {
+		$features[] = "'volume'";
 	}
 	$temp[] = 'features: [' . implode(',', $features) . ']';
 	$features_string = !empty($temp) ? implode(',', $temp) : '';

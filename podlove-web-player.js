@@ -1,6 +1,3 @@
-// Podlove JavaScript "namespace" object
-var PODLOVEWEBPLAYER = PODLOVEWEBPLAYER || {};
-
 (function($) {
 	'use strict';
 
@@ -173,216 +170,210 @@ var PODLOVEWEBPLAYER = PODLOVEWEBPLAYER || {};
 
 	/* --------------------- Build actual player ---- */
 
-	$.fn.podlovewebplayer = PODLOVEWEBPLAYER.web_player = function web_player(params, player) {
+	$.fn.podlovewebplayer = function(options) {
+		var player = this[0];
 
-		// recursion: handle every element in the jquery collection
-     	if (this instanceof jQuery) {
- 			this.each(function(){
- 				return web_player(params, this);
- 			});
-		} else if (typeof player !== 'undefined' && typeof params !== 'undefined') {
+		//handle default values for params
+		var params = $.extend({}, {
+			'chapterlinks': 'all',
+			'width': '100%',
+			'duration': false
+		}, options);
 
-			//handle default values for params
-			var defaults = {
-				chapterlinks: 'all',
-				width: '100%',
-				duration: false
-			}
-			$.each(defaults, function(key, value){
-				if (typeof params[key] === 'undefined') {
-					params[key] = value;
-				}
-			});
-			if (typeof params.width !== 'undefined') {
-				params.width = params.width.replace('px','');
-			}
-			if (typeof params.audioWidth !== 'undefined') {
-				params.width = params.audioWidth;
-			}
-
-			// MEJS options defaults (taken from mediaelementjs.com, slightly adopted for podcasting needs)
-			var mejsoptions = {
-				defaultVideoWidth: 480,
-				defaultVideoHeight: 270,
-				videoWidth: -1,
-				videoHeight: -1,
-				audioWidth: -1,
-				audioHeight: 30,
-				startVolume: 0.8,
-				loop: false,
-				enableAutosize: true,
-				features: ['playpause','progress','current','duration','tracks','volume','fullscreen'],
-				alwaysShowControls: false,
-				iPadUseNativeControls: true,
-				iPhoneUseNativeControls: true, 
-				AndroidUseNativeControls: true,
-				alwaysShowHours: false,
-				showTimecodeFrameCount: false,
-				framesPerSecond: 25,
-				enableKeyboard: true,
-				pauseOtherPlayers: true
-			}
-
-			//transfer width/height to the correct mejs counterparts	
-
-			if (player.tagName == "AUDIO") {
-				mejsoptions.audioWidth = params.width;
-			} else {
-				if (typeof params.height !== 'undefined') {
-					mejsoptions.videoWidth = params.width;
-					mejsoptions.videoHeight = params.height;
-				}
-			}
-			
-			//turn ALL suitable pwp params to mejs options
-			$.each(mejsoptions, function(key, value){
-				if (typeof params[key] !== 'undefined') {
-					mejsoptions[key] = params[key];
-				}
-			});
-
-			//wrapper and init stuff
-			$(player).wrap('<div class="mediaelementjs_player_container" style="width: '+params.width+'px"></div>');
-			var deepLink, wrapper = $(player).parent();
-			players.push(player);
-
-			//add params from html fallback area
-			$(player).find('[data-pwp]').each(function(){
-				params[$(this).data('pwp')] =$(this).html();
-				$(this).remove();
-			});
-
-			//build rich player with meta data
-			if (player.tagName == "AUDIO" && (
-					typeof params.title !== 'undefined' ||
-					typeof params.subtitle !== 'undefined' ||
-					typeof params.summary !== 'undefined' ||
-					typeof params.poster !== 'undefined' ||
-					typeof $(player).attr('poster') !== 'undefined'
-					)) {
-
-				//kill play/pause button from miniplayer
-				mejsoptions.features.splice('playpause',1);
-
-				wrapper.prepend('<div class="podlovemeta"><a class="bigplay" href="#">Play Episode</a></div>');
-				if (typeof params.poster !== 'undefined') {
-					wrapper.find('.podlovemeta').append(
-						'<div class="coverart"><img src="'+params.poster+'" alt=""></div>');
-				}
-				if (typeof $(player).attr('poster') !== 'undefined') {
-					wrapper.find('.podlovemeta').append(
-						'<div class="coverart"><img src="'+$(player).attr('poster')+'" alt=""></div>');
-				}
-				if (typeof params.title !== 'undefined') {
-					wrapper.find('.podlovemeta').append(
-						'<h3>'+params.title+'</h3>');
-				}
-				if (typeof params.subtitle !== 'undefined') {
-					wrapper.find('.podlovemeta').append(
-						'<div class="subtitle">'+params.subtitle+'</div>');
-				}
-				if (typeof params.summary !== 'undefined') {
-					wrapper.find('.podlovemeta').append(
-						'<a href="#" class="infowindow" title="more information on the episode">info</a>');
-					wrapper.find('.podlovemeta').after(
-						'<div class="summary">'+params.summary+'</div>');
-				}
-			}
-
-			//build chapter table
-			if (typeof params.chapters !== 'undefined') {
-				var class_names = 'pwp_chapters';
-				if (params.chapterlinks != 'false') {
-					class_names += ' linked linked_'+params.chapterlinks;
-				}
-				var tablestring = '<table rel="'+player.id+'" class="'+class_names+'">';
-				tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
-				if (params.chapterlinks != 'false') {
-					tablestring += '<th scope="col">Play</th>';
-				}
-				tablestring += '<th scope="col">Title</th><th scope="col">Duration</th></tr></thead>';
-				tablestring += '<tbody></tbody></table>';
-				wrapper.append(tablestring);
-				var table = wrapper.find('table[rel='+player.id+']');
-
-				//prepare row data
-				var tempchapters = {};
-				var i = 0;
-				//first round: kill empty rows and build structured object
-				$.each(params.chapters.split("\n"), function(){
-					var line = $.trim(this);
-					var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
-					var chaptitle = $.trim(line.substring(line.indexOf(' ')));
-					if (line.length > 5) {
-						tempchapters[i] = {start: tc[0], title: chaptitle };
-						i++;
-					}
-				});
-				//second round: build actual dom table
-				$.each(tempchapters, function(i){
-
-					var deeplink = document.location;
-
-					var finalchapter = (typeof tempchapters[parseInt(i)+1] === 'undefined') ? true : false;
-					if (!finalchapter) {
-						this.end = 	tempchapters[parseInt(i)+1].start;
-						this.duration = generateTimecode([Math.round(this.end-this.start)]);
-					} else {
-						if (params.duration == 0) {
-							this.end = false;
-							this.duration = '…';
-						} else {
-							this.end = params.duration;
-							this.duration = generateTimecode([Math.round(params.duration-this.start)]);
-							
-						}
-					}
-
-					// deeplink, start and end
-					var deeplink_chap = '#t=' + this.start + (this.end != false ? ',' + this.end : '');
-					var rowstring = '<tr data-start="'+this.start+'" data-end="'+this.end+'">';
-
-					if (params.chapterlinks != 'false') {
-						var linkclass = "";
-						if (params.chapterlinks != 'all') { linkclass = ' class="disabled"'; }
-						rowstring += '<td class="chapterplay">';
-						rowstring += '<a rel="player" title="play chapter" ';
-						rowstring += 'data-start="' + deeplink + '"' + linkclass + '><span>»</span></a>';
-						rowstring += '</td>';
-					}
-					rowstring += '<td>'+this.title+'</td>';
-					rowstring += '<td class="timecode">'+"\n";
-					rowstring += '<a class="deeplink" href="' + deeplink_chap;
-					rowstring += '" title="chapter deeplink">#</a> '+"\n";
-					rowstring += '<code>' + this.duration + '</code>' + "\n";
-					rowstring += '</td>'+"\n";
-					rowstring += '</tr>';
-					table.append(rowstring);	
-				});
-			}
-
-			// parse deeplink
-			deepLink = parseTimecode(window.location.href);
-			if (deepLink !== false && players.length === 1) {
-				$(player).attr({preload: 'auto', autoplay: 'autoplay'});
-				startAtTime = deepLink[0];
-				stopAtTime = deepLink[1];
-			}
-
-
-			// init MEJS to player
-			mejsoptions.success = function (player) {
-					PODLOVEWEBPLAYER.web_player.addBehavior(player);
-					if (deepLink !== false && players.length === 1) {
-						$('html, body')
-							.delay(150)
-							.animate({
-								scrollTop: $('.mediaelementjs_player_container:first').offset().top - 25
-							});
-					}
-				}
-			$(player).mediaelementplayer(mejsoptions);
+		//fine tuning params
+		params.width = params.width.replace('px','');
+		if (player.tagName == "AUDIO" && typeof params.audioWidth !== 'undefined') {
+			params.width = params.audioWidth;
 		}
+
+		// MEJS options defaults (taken from mediaelementjs.com, slightly adopted for podcasting needs)
+		var mejsoptions = {
+			defaultVideoWidth: 480,
+			defaultVideoHeight: 270,
+			videoWidth: -1,
+			videoHeight: -1,
+			audioWidth: -1,
+			audioHeight: 30,
+			startVolume: 0.8,
+			loop: false,
+			enableAutosize: true,
+			features: ['playpause','progress','current','duration','tracks','volume','fullscreen'],
+			alwaysShowControls: false,
+			iPadUseNativeControls: false,
+			iPhoneUseNativeControls: false, 
+			AndroidUseNativeControls: true,
+			alwaysShowHours: false,
+			showTimecodeFrameCount: false,
+			framesPerSecond: 25,
+			enableKeyboard: true,
+			pauseOtherPlayers: true
+		}
+
+		//transfer width/height to the correct mejs counterparts	
+
+		if (player.tagName == "AUDIO") {
+			mejsoptions.audioWidth = params.width;
+		} else {
+			if (typeof params.height !== 'undefined') {
+				mejsoptions.videoWidth = params.width;
+				mejsoptions.videoHeight = params.height;
+			}
+		}
+		
+		//turn ALL suitable pwp params to mejs options
+		$.each(mejsoptions, function(key, value){
+			if (typeof params[key] !== 'undefined') {
+				mejsoptions[key] = params[key];
+			}
+		});
+
+		//wrapper and init stuff
+		$(player).wrap('<div class="podlovewebplayer_wrapper" style="width: '+params.width+'px"></div>');
+		var deepLink, wrapper = $(player).parent();
+		players.push(player);
+
+		//add params from html fallback area
+		$(this).find('[data-pwp]').each(function(){
+			params[$(this).data('pwp')] = $(this).html();
+			$(this).remove();
+		});
+
+		//build rich player with meta data
+		if (player.tagName == "AUDIO" && (
+				typeof params.title !== 'undefined' ||
+				typeof params.subtitle !== 'undefined' ||
+				typeof params.summary !== 'undefined' ||
+				typeof params.poster !== 'undefined' ||
+				typeof $(player).attr('poster') !== 'undefined'
+				)) {
+
+			//kill play/pause button from miniplayer
+			$.each(mejsoptions.features, function(i){
+				if (this == 'playpause') {
+					mejsoptions.features.splice(i,1);		
+				}
+			});
+			
+
+			wrapper.prepend('<div class="podlovewebplayer_meta"><a class="bigplay" href="#">Play Episode</a></div>');
+			if (typeof params.poster !== 'undefined') {
+				wrapper.find('.podlovewebplayer_meta').append(
+					'<div class="coverart"><img src="'+params.poster+'" alt=""></div>');
+			}
+			if (typeof $(player).attr('poster') !== 'undefined') {
+				wrapper.find('.podlovewebplayer_meta').append(
+					'<div class="coverart"><img src="'+$(player).attr('poster')+'" alt=""></div>');
+			}
+			if (typeof params.title !== 'undefined') {
+				wrapper.find('.podlovewebplayer_meta').append(
+					'<h3>'+params.title+'</h3>');
+			}
+			if (typeof params.subtitle !== 'undefined') {
+				wrapper.find('.podlovewebplayer_meta').append(
+					'<div class="subtitle">'+params.subtitle+'</div>');
+			}
+			if (typeof params.summary !== 'undefined') {
+				wrapper.find('.podlovewebplayer_meta').append(
+					'<a href="#" class="infowindow" title="more information on the episode">info</a>');
+				wrapper.find('.podlovewebplayer_meta').after(
+					'<div class="summary">'+params.summary+'</div>');
+			}
+		}
+
+		//build chapter table
+		if (typeof params.chapters !== 'undefined') {
+			var class_names = 'podlovewebplayer_chapters';
+			if (params.chapterlinks != 'false') {
+				class_names += ' linked linked_'+params.chapterlinks;
+			}
+			var tablestring = '<table rel="'+player.id+'" class="'+class_names+'">';
+			tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
+			if (params.chapterlinks != 'false') {
+				tablestring += '<th scope="col">Play</th>';
+			}
+			tablestring += '<th scope="col">Title</th><th scope="col">Duration</th></tr></thead>';
+			tablestring += '<tbody></tbody></table>';
+			wrapper.append(tablestring);
+			var table = wrapper.find('table[rel='+player.id+']');
+
+			//prepare row data
+			var tempchapters = {};
+			var i = 0;
+
+			//first round: kill empty rows and build structured object
+			$.each(params.chapters.split("\n"), function(){
+				var line = $.trim(this);
+				var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
+				var chaptitle = $.trim(line.substring(line.indexOf(' ')));
+				if (line.length > 5) {
+					tempchapters[i] = {start: tc[0], title: chaptitle };
+					i++;
+				}
+			});
+
+			//second round: build actual dom table
+			$.each(tempchapters, function(i){
+
+				var deeplink = document.location;
+
+				var finalchapter = (typeof tempchapters[parseInt(i)+1] === 'undefined') ? true : false;
+				if (!finalchapter) {
+					this.end = 	tempchapters[parseInt(i)+1].start;
+					this.duration = generateTimecode([Math.round(this.end-this.start)]);
+				} else {
+					if (params.duration == 0) {
+						this.end = false;
+						this.duration = '…';
+					} else {
+						this.end = params.duration;
+						this.duration = generateTimecode([Math.round(params.duration-this.start)]);
+						
+					}
+				}
+
+				// deeplink, start and end
+				var deeplink_chap = '#t=' + this.start + (this.end != false ? ',' + this.end : '');
+				var rowstring = '<tr data-start="'+this.start+'" data-end="'+this.end+'">';
+
+				if (params.chapterlinks != 'false') {
+					var linkclass = "";
+					if (params.chapterlinks != 'all') { linkclass = ' class="disabled"'; }
+					rowstring += '<td class="chapterplay">';
+					rowstring += '<a rel="player" title="play chapter" ';
+					rowstring += 'data-start="' + deeplink + '"' + linkclass + '><span>»</span></a>';
+					rowstring += '</td>';
+				}
+				rowstring += '<td>'+this.title+'</td>';
+				rowstring += '<td class="timecode">'+"\n";
+				rowstring += '<a class="deeplink" href="' + deeplink_chap;
+				rowstring += '" title="chapter deeplink">#</a> '+"\n";
+				rowstring += '<code>' + this.duration + '</code>' + "\n";
+				rowstring += '</td>'+"\n";
+				rowstring += '</tr>';
+				table.append(rowstring);	
+			});
+		}
+
+		// parse deeplink
+		deepLink = parseTimecode(window.location.href);
+		if (deepLink !== false && players.length === 1) {
+			$(player).attr({preload: 'auto', autoplay: 'autoplay'});
+			startAtTime = deepLink[0];
+			stopAtTime = deepLink[1];
+		}
+
+
+		// init MEJS to player
+		mejsoptions.success = function (player) {
+			addBehavior(player);
+			if (deepLink !== false && players.length === 1) {
+				$('html, body').delay(150).animate({
+					scrollTop: $('.podlovewebplayer_wrapper:first').offset().top - 25
+				});
+			}
+		}
+		console.log(mejsoptions.features);
+		$(player).mediaelementplayer(mejsoptions);
 	};
 
 
@@ -391,7 +382,7 @@ var PODLOVEWEBPLAYER = PODLOVEWEBPLAYER || {};
 	 * time position & write current time into address
 	 * @param player object
 	 */
-	PODLOVEWEBPLAYER.web_player.addBehavior = function (player) {
+	var addBehavior = function(player) {
 
 		var jqPlayer = $(player),
 			layoutedPlayer = jqPlayer,
@@ -410,10 +401,10 @@ var PODLOVEWEBPLAYER = PODLOVEWEBPLAYER || {};
 			var layoutedPlayer = $("#mep_" + player.id.substring(9));
 		}
 		// get DOM object of meta info
-		var metainfo = layoutedPlayer.closest('.mediaelementjs_player_container').find('.podlovemeta');
+		var metainfo = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_meta');
 		if (metainfo.length === 1) {
 			metainfo.find('a.infowindow').on('click', function(){
-				$(this).closest('.mediaelementjs_player_container').find('.summary').toggleClass('active');
+				$(this).closest('.podlovewebplayer_wrapper').find('.summary').toggleClass('active');
 				return false;
 			});
 			metainfo.find('.bigplay').on('click', function(){

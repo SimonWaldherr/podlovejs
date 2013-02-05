@@ -372,7 +372,6 @@
 				});
 			}
 		}
-		console.log(mejsoptions.features);
 		$(player).mediaelementplayer(mejsoptions);
 	};
 

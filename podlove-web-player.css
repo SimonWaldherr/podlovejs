@@ -6,6 +6,10 @@
 	min-height: 30px;
 }
 
+.mejs-container .mejs-controls > div:first-child {
+	margin-left: 8px;
+}
+
 .podlovewebplayer_wrapper {
 	clear: both;
 	position: relative;

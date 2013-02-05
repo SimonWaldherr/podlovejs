@@ -258,7 +258,7 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	text-align: center;
 	width: 25px;
 	height: 25px;
-	background: #ddd;
+	background: #bbb;
 	-webkit-border-radius: 13px;
 	-moz-border-radius: 13px;
 	-o-border-radius: 13px;
@@ -288,7 +288,7 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 .pwp_chapters .chapterplay a.disabled:focus,
 .pwp_chapters .chapterplay a.disabled:hover,
 .pwp_chapters .chapterplay a.disabled:active {
-	background: #ddd;
+	background: #eee;
 	cursor: wait;
 }
 
@@ -302,6 +302,8 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	text-indent: -1000px;
 	margin: 0 0 0 6px;
 	background: transparent url(mediaelement/controls.png) no-repeat 0 0;
+	background-image: url(mediaelement/controls.svg);
+
 }
 
 .pwp_chapters .active .chapterplay a[rel=player] span {

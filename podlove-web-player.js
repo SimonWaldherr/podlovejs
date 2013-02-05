@@ -1,5 +1,4 @@
 // Podlove JavaScript "namespace" object
-
 var PODLOVEWEBPLAYER = PODLOVEWEBPLAYER || {};
 
 (function($) {
@@ -104,10 +103,7 @@ var PODLOVEWEBPLAYER = PODLOVEWEBPLAYER || {};
 
 	function checkCurrentURL() {
 		var deepLink;
-
-		// parse deeplink
 		deepLink = parseTimecode(window.location.href);
-
 		if (deepLink !== false) {
 			startAtTime = deepLink[0];
 			stopAtTime = deepLink[1];
@@ -116,7 +112,6 @@ var PODLOVEWEBPLAYER = PODLOVEWEBPLAYER || {};
 
 	function setFragmentURL(fragment) {
 		var url;
-
 		window.location.hash = fragment;
 	}
 
@@ -154,12 +149,8 @@ var PODLOVEWEBPLAYER = PODLOVEWEBPLAYER || {};
 	}
 
 	function checkTime(e) {
-		if (players.length > 1) {
-			return;
-		}
-
+		if (players.length > 1) { return; }
 		var player = e.data.player;
-
 		if (startAtTime !== false) {
 			player.setCurrentTime(startAtTime);
 			startAtTime = false;

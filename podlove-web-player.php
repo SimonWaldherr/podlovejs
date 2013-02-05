@@ -408,7 +408,6 @@ if( !@is_feed() && isset( $wp_options['enclosure_detect'] ) ) {
 function podlovewebplayer_init() {
 	wp_enqueue_script('jquery');
 }
-
 add_action('init', 'podlovewebplayer_init');
 
 

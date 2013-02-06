@@ -129,11 +129,13 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'fullscreen' => 'true',
 		'captions' => '',
 		'captionslang' => 'en',
+		'alwaysShowHours' => 'true',
 
 		// Podlove specific additions
 		'title' => '',
 		'subtitle' => '',
 		'summary' => '',
+		'permalink' => '',
 		'chapters' => '',
 		'chapterlinks' => 'all', // could also be 'false' or 'buffered'
 		'duration' => false
@@ -247,16 +249,23 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	// ------------------- prepare podlove meta info (enriched player)
 
 	$richplayer = "";
-	if ($title) {
-		$richplayer .= '<h3 data-pwp="title">'.$title.'</h3>';
+	$titlepre = "";
+	$titlepost = "";
+	
+	if ( $permalink ) {
+		$titlepre = '<a href="'.$permalink.'">';
+		$titlepost = '</a>';
 	}
-	if ($subtitle) {
+	if ( $title ) {
+		$richplayer .= '<h3 data-pwp="title">'.$titlepre.$title.$titlepost.'</h3>';
+	}
+	if ($subtitle ) {
 		$richplayer .= '<h4 data-pwp="subtitle">'.$subtitle.'</h4>';
 	}
-	if ($summary) {
+	if ( $summary ) {
 		$richplayer .= '<div data-pwp="summary">'.$summary.'</div>';
 	}
-	if ($chapters = podlovewebplayer_render_chapters($chapters)) {
+	if ( $chapters = podlovewebplayer_render_chapters( $chapters ) ) {
 		$richplayer .= '<div data-pwp="chapters">'.$chapters.'</div>';
 	}
 
@@ -276,6 +285,9 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	if ( $tag_name == 'audio' ) {
 		$init_options .= "\n  audioWidth: '". $width . "',";
 		$init_options .= "\n  audioHeight: '" . $height . "',";
+	}
+	if ( $alwaysShowHours ) {
+		$init_options .= "\n  alwaysShowHours: '" . $alwaysShowHours . "',";	
 	}
 	if ( !empty( $features_string ) ) {
 		$init_options .= "\n  " . $features_string . ",";

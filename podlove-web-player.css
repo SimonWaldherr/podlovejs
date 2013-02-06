@@ -164,6 +164,7 @@
 	height: 100px;
 }
 
+.podlovewebplayer_meta h3 a,
 .podlovewebplayer_meta h3 {
 	clear: none;
 	color: #eee!important;
@@ -173,6 +174,16 @@
 	margin: 0!important;
 	text-transform: none;
 	letter-spacing: 0;
+}
+
+.podlovewebplayer_meta h3 a {
+	color: #fff;
+}
+
+.podlovewebplayer_meta h3 a:focus,
+.podlovewebplayer_meta h3 a:hover,
+.podlovewebplayer_meta h3 a:active {
+	color: #bbb!important;
 }
 
 .podlovewebplayer_meta .subtitle {

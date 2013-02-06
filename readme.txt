@@ -66,46 +66,21 @@ This location of any audio or video file, local ore remote:
     
     [podloveaudio src="http://mysite.com/mymedia.mp3"]
     
-You can even leave off the extention and the player will look for all media files matching the filename (mymedia.mp4, mymedia.webm, etc.)  
-
-	[podlovevideo src="http://mysite.com/mymedia"]
-    
 = type =
 
 The media type of the resource:
     
-    [podlovevideo src="http://mysite.com/mymedia?xyz" type="video/mp4"]    
+    [podlovevideo src="http://mysite.com/mymedia.m4v" type="video/mp4"]    
 
-= mp4 = 
+= mp4 / webm / ogg  = 
 
-The location of an h.264/MP4 source for the video:
+The location of a file with a specific video type:
     
-    [podlovevideo mp4="http://mysite.com/mymedia.mp4"]
-    
-= mp3 =
+    [podlovevideo mp4="mymedia.mp4" webm="mymedia.webm" ogg="mymedia.ogv"]
 
-The location of an MP3 file for video:
-    
-    [podloveaudio mp3="http://mysite.com/mymedia.mp3"]    
+= mp4 / mp3 / ogg / opus =
 
-= ogg =
-
-The location of a Ogg/Theora or a Ogg/Vorbis source:
-
-    [podlovevideo ogg="http://mysite.com/mymedia.ogv"]
-    [podloveaudio ogg="http://mysite.com/mymedia.oga"]
-
-= opus =
-
-The location of an Opus sound file:
-
-    [podloveaudio opus="http://mysite.com/mymedia.opus"]
-
-= webm =
-
-The location of a VP8/WebM source for the video:
-
-    [podlovevideo webm="http://mysite.com/mymedia.webm"]
+    [podloveaudio mp4="mymedia.m4a" mp3="mymedia.mp3" ogg="mymedia.oga" opus="mymedia.opus"]
 
 = poster = 
 
@@ -154,7 +129,13 @@ Disables the fullscreen button for video:
 
 Enables display of duration without having to load the media file. Use seconds as a unit:
     
-    [podlovevideo duration="355"]   
+    [podlovevideo duration="355"]
+
+= alwaysShowHours =
+
+Displays the time in 00:00:00 instead of 00:00. Default is "true".
+
+    [podloveaudio alwaysShowHours="false"]   
     
 = volume = 
 
@@ -170,9 +151,9 @@ Disables the progress bar:
     
 = captions = 
 
-URL to a WebSRT captions file:
+URL to a WebVTT captions file:
     
-    [podlovevideo captions="http://mysite.com/mymedia.srt"]  
+    [podlovevideo captions="http://mysite.com/mymedia.vtt"]  
 
 = chapters = 
 
@@ -232,6 +213,8 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * cleaned variables and removed old stuff
 * new settings area (yes, again. But now WordPress API compliant)
 * added "duration" parameter for displaying duration of last chapter
+* added "alwaysShowHours" parameter
+* added "permalink" parameter
 * added sample audio files for testing purposes
 * some minor CSS improvements
 * fresh versions of mediaelementjs and jQuery

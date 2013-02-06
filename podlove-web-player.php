@@ -130,6 +130,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'captions' => '',
 		'captionslang' => 'en',
 		'alwaysShowHours' => 'true',
+		'alwaysShowControls' => 'true',
 
 		// Podlove specific additions
 		'title' => '',
@@ -288,6 +289,9 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	}
 	if ( $alwaysShowHours ) {
 		$init_options .= "\n  alwaysShowHours: '" . $alwaysShowHours . "',";	
+	}
+	if ( $alwaysShowControls ) {
+		$init_options .= "\n  alwaysShowControls: '" . $alwaysShowControls . "',";	
 	}
 	if ( !empty( $features_string ) ) {
 		$init_options .= "\n  " . $features_string . ",";

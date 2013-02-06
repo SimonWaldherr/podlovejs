@@ -135,7 +135,13 @@ Enables display of duration without having to load the media file. Use seconds a
 
 Displays the time in 00:00:00 instead of 00:00. Default is "true".
 
-    [podloveaudio alwaysShowHours="false"]   
+    [podloveaudio alwaysShowHours="false"]  
+
+= alwaysShowControls =
+
+Defines whether the player control bar is permanently visible. For videos, it might be suitable to fade the controls out when not hovering the video.
+
+    [podlovevideo alwaysShowControls="false"]   
     
 = volume = 
 
@@ -184,18 +190,6 @@ If you have an audio file and use one of the following attributes, the player wi
     [podloveaudio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" title="PWP – First show" subtitle="We talk about this and that" summary="Here goes a summary of the episode which should be about 256 characters long" poster="http://mysite.com/mymedia.jpg" permalink="http://mysite.com/my-first-episode/"]
 
 
-= All attributes video example =
-
-All options enabled:
-
-    [podlovevideo mp4="http://mysite.com/mymedia.mp4" ogg="http://mysite.com/mymedia.ogg" webm="http://mysite.com/mymedia.webm" poster="http://mysite.com/mymedia.png" preload="true" autoplay="true" width="640" height="264"]
-
-= All attributes audio exmaple =
-
-All options enabled:
-
-    [podloveaudio mp4="http://mysite.com/mymedia.m4a" mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" opus="http://mysite.com/mymedia.opus" width="640" preload="true" autoplay="true" title="PWP – First show" subtitle="We talk about this and that" summary="Here goes a summary of the episode which should be about 256 characters long" poster="http://mysite.com/mymedia.jpg" permalink="http://mysite.com/my-first-episode/"]
-
 ### Deprecated usage
 
 Earlier versions of this plugin could handle alternative shortcodes, too: [audio] and [video]. As of version 1.1, these are deprecated as they conflict with other plugins.
@@ -214,6 +208,7 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * new settings area (yes, again. But now WordPress API compliant)
 * added "duration" parameter for displaying duration of last chapter
 * added "alwaysShowHours" parameter
+* added "alwaysShowControls" parameter
 * added "permalink" parameter
 * added sample audio files for testing purposes
 * some minor CSS improvements

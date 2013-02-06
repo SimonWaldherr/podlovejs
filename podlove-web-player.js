@@ -462,12 +462,14 @@
 			canplay = true;
 
 			// add duration of final chapter
-			marks.find('.timecode code').eq(-1).each(function(){
-				var start = Math.floor($(this).closest('tr').data('start'));
-				var end = Math.floor(player.duration);
-				var duration = end - start;
-				$(this).text(generateTimecode(new Array(duration,duration)));
-			});
+			if (player.duration) {
+				marks.find('.timecode code').eq(-1).each(function(){
+					var start = Math.floor($(this).closest('tr').data('start'));
+					var end = Math.floor(player.duration);
+					$(this).text(generateTimecode(end-start));
+				});
+			}
+			
 
 			// add Deeplink Behavior if there is only one player on the site
 			if (players.length === 1) {

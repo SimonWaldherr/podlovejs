@@ -251,7 +251,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	$richplayer = "";
 	$titlepre = "";
 	$titlepost = "";
-	
+
 	if ( $permalink ) {
 		$titlepre = '<a href="'.$permalink.'">';
 		$titlepost = '</a>';
@@ -380,18 +380,18 @@ function podlovewebplayer_get_enclosed( $post_id ) {
 function podlovewebplayer_enclosure( $content ) {
 	global $post;
 	$wp_options = get_option('podlovewebplayer_options');
-
 	if ( $enclosures = podlovewebplayer_get_enclosed( $post->ID ) // do we have enclosures in this post?
 		AND (
 			isset($wp_options['enclosure_force']) // forced to render enclosures by option
 			OR 
-			( !strpos( $content, "[podloveaudio" ) AND 
-			  !strpos( $content, "[podlovevideo" ) AND
-			  !strpos( $content, "[audio" ) AND 
-			  !strpos( $content, "[video" ) ) // there is no manual shortcode
+			( strpos( $content, "[podloveaudio" ) === false AND 
+			  strpos( $content, "[podlovevideo" ) === false AND
+			  strpos( $content, "[audio" ) === false AND 
+			  strpos( $content, "[video" ) === false ) // there is no manual shortcode
 		)
 	) 
 	{
+
 		foreach( $enclosures as $enclosure ) {
 			$type = substr( $enclosure[2], 0, strpos( $enclosure[2], "/" ) );
 			$pwpcode = do_shortcode( '[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'"]' );

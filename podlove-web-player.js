@@ -197,7 +197,7 @@
 			startVolume: 0.8,
 			loop: false,
 			enableAutosize: true,
-			features: ['playpause','progress','current','duration','tracks','volume','fullscreen'],
+			features: ['playpause','current','progress','duration','tracks','volume','fullscreen'],
 			alwaysShowControls: false,
 			iPadUseNativeControls: false,
 			iPhoneUseNativeControls: false, 

@@ -395,10 +395,15 @@ function podlovewebplayer_enclosure( $content ) {
 		)
 	) 
 	{
-
 		foreach( $enclosures as $enclosure ) {
 			$type = substr( $enclosure[2], 0, strpos( $enclosure[2], "/" ) );
-			$pwpcode = do_shortcode( '[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'"]' );
+			$duration = "";
+			if ( isset( $enclosure[3] ) ) {
+				$duration = "duration='".$enclosure[3]."'";
+			}
+			//$shortcode = '[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'" '.$duration.']';
+			$shortcode = '[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'"]';
+			$pwpcode = do_shortcode( $shortcode );
 			if ( isset( $wp_options['enclosure_bottom'] ) ) {
 				$content = $content . $pwpcode;
 			} else {

@@ -185,6 +185,9 @@
 		if (player.tagName == "AUDIO" && typeof params.audioWidth !== 'undefined') {
 			params.width = params.audioWidth;
 		}
+		if (player.tagName == "VIDEO" && typeof $(player).attr('width') !== 'undefined') {
+			params.width = $(player).attr('width');
+		}
 
 		// MEJS options defaults (taken from mediaelementjs.com, slightly adopted for podcasting needs)
 		var mejsoptions = {

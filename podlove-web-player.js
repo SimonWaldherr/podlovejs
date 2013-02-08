@@ -122,9 +122,14 @@
 				startTime  = mark.data('start'),
 				endTime    = mark.data('end'),
 				isEnabled  = mark.data('enabled'),
-				isBuffered = player.buffered.end(0) > startTime,
+				// isBuffered = player.buffered.end(0) > startTime,
 				isActive   = player.currentTime > startTime - 0.3 &&
 						player.currentTime <= endTime;
+
+			// prevent timing errors
+			if (player.buffered.length > 0) {
+			  var isBuffered = player.buffered.end(0) > startTime;
+			}
 
 			if (isActive) {
 				mark
@@ -148,8 +153,12 @@
 	function checkTime(e) {
 		if (players.length > 1) { return; }
 		var player = e.data.player;
-		if (startAtTime !== false) {
+		if (startAtTime !== false && 
+			//Kinda hackish: Make sure that the timejump is at least 1 second (fix for OGG/Firefox)
+			(typeof player.lastCheck === "undefined" || 
+			Math.abs(startAtTime - player.lastCheck) > 1)) {
 			player.setCurrentTime(startAtTime);
+			player.lastCheck = startAtTime;
 			startAtTime = false;
 		}
 		if (stopAtTime !== false && player.currentTime >= stopAtTime) {
@@ -160,9 +169,12 @@
 
 	function addressCurrentTime(e) {
 		var fragment;
+		/* Why did we need that? It prevented firefox from generating fragments after pause
 		if (players.length === 1 &&
 				stopAtTime === false &&
 				startAtTime === false) {
+		*/
+		if (players.length === 1) {
 			fragment = 't=' + generateTimecode([e.data.player.currentTime]);
 			setFragmentURL(fragment);
 		}

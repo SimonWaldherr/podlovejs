@@ -204,6 +204,11 @@
 		if (player.tagName == "VIDEO" && typeof $(player).attr('width') !== 'undefined') {
 			params.width = $(player).attr('width');
 		}
+		//duration can be given in seconds or in timecode format
+		if (params.duration && params.duration != parseInt(params.duration)) {
+			var secArray = parseTimecode(params.duration);
+			params.duration = secArray[0];
+		}
 
 		// MEJS options defaults (taken from mediaelementjs.com, slightly adopted for podcasting needs)
 		var mejsoptions = {
@@ -381,7 +386,6 @@
 			startAtTime = deepLink[0];
 			stopAtTime = deepLink[1];
 		}
-
 
 		// init MEJS to player
 		mejsoptions.success = function (player) {

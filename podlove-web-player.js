@@ -347,7 +347,7 @@
 					this.duration = generateTimecode([Math.round(this.end-this.start)]);
 				} else {
 					if (params.duration == 0) {
-						this.end = false;
+						this.end = 9999999999;
 						this.duration = '…';
 					} else {
 						this.end = params.duration;

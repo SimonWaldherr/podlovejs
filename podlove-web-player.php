@@ -234,7 +234,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	// ------------------- prepare player dimensions
 	if ($tag_name == 'audio') {
 		$widthunit = 'px';
-		if (empty($width)) {
+		if (empty($width) || strtoupper(trim($width)) == "AUTO") {
 			$width = 'auto';
 			$widthunit = '';
 		}

@@ -253,7 +253,10 @@
 		});
 
 		//wrapper and init stuff
-		$(player).wrap('<div class="podlovewebplayer_wrapper" style="width: '+params.width+'px"></div>');
+		if (params.width == parseInt(params.width)) { 
+			params.width += "px"; 
+		}
+		$(player).wrap('<div class="podlovewebplayer_wrapper" style="width: '+params.width+'"></div>');
 		var deepLink, wrapper = $(player).parent();
 		players.push(player);
 

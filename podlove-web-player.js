@@ -318,7 +318,7 @@
 			if (params.chapterlinks != 'false') {
 				class_names += ' linked linked_'+params.chapterlinks;
 			}
-			var tablestring = '<div class="pwp_chapterbox showonplay active"><table rel="'+player.id+'" class="'+class_names+'">';
+			var tablestring = '<div class="podlovewebplayer_chapterbox showonplay active"><table rel="'+player.id+'" class="'+class_names+'">';
 			tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
 			if (params.chapterlinks != 'false') {
 				tablestring += '<th scope="col">Play</th>';
@@ -384,7 +384,7 @@
 				table.append(rowstring);	
 			});
 		}
-		wrapper.append('<div class="pwp_tableend"></div>');
+		wrapper.append('<div class="podlovewebplayer_tableend"></div>');
 
 		// parse deeplink
 		deepLink = parseTimecode(window.location.href);
@@ -433,7 +433,7 @@
 		// get DOM object of meta info
 		var metainfo = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_meta');
 		var summary = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.summary');
-		var chapterdiv = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox');
+		var chapterdiv = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox');
 		
 		summary.each(function() {
 			$(this).data("height", $(this).height());
@@ -512,12 +512,12 @@
 		
 		if (chapterdiv.length === 1) {
 			metainfo.find('a.chaptertoggle').on('click', function(){
-				$(this).closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox').toggleClass('active');
-				if($(this).closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox').hasClass('active')) {
-					$(this).closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox').height($(this).closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox').data("height")+'px');
+				$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').toggleClass('active');
+				if($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').hasClass('active')) {
+					$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').height($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').data("height")+'px');
 				}
 				else {
-					$(this).closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox').height('0px');
+					$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').height('0px');
 				}
 				return false;
 			});

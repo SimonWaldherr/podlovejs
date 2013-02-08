@@ -382,7 +382,7 @@
 	font-weight: 500;
 }
 
-.pwp_chapterbox {
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox {
 	display: block;
 	height: auto;
 	border: 1px #000 solid;
@@ -393,7 +393,7 @@
 	transition: all 0.5s;
 }
 
-.podlovewebplayer_wrapper .pwp_tableend {
+.podlovewebplayer_wrapper .podlovewebplayer_tableend {
 	position: relative;
 	display: block;
 	height: 10px;

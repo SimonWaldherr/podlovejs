@@ -163,10 +163,16 @@
 }
 
 .podlovewebplayer_meta .coverart img {
+	border-radius: 12px;
+	height: 80%;
+	top: 8px;
+	position: relative;
 	float: left;
 	margin-right: 10px;
-	height: 100px;
-}
+	box-shadow: 0px 0px 15px 0px #000000; 
+	-webkit-box-shadow: 0px 0px 15px 0px #000000; 
+  }
+
 
 .podlovewebplayer_meta h3 a,
 .podlovewebplayer_meta h3 {
@@ -210,18 +216,20 @@
 	font-size: 12px;
 	line-height: 1.5;
 	color: #000;
+	border-left: 1px #111 solid;
+	border-right: 1px #111 solid;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
 	background: url(mediaelement/build/background.png);
-background: rgba(0, 0, 0, 0.9);
-background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(150, 150, 150, 0.9)), to(rgba(0, 0, 0, 0.9)));
-background: -webkit-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: -moz-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: -o-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: -ms-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: rgba(0, 0, 0, 0.9);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(150, 150, 150, 0.9)), to(rgba(0, 0, 0, 0.9)));
+	background: -webkit-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: -moz-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: -o-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: -ms-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 }
 
 .podlovewebplayer_meta + .summary.active {
@@ -352,6 +360,17 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	-moz-border-radius: 16px;
 	-o-border-radius: 16px;
 	border-radius: 16px;
+}
+
+.podlovewebplayer_chapters td b {
+	color: #000;
+	font-weight: bolder;
+}
+
+.podlovewebplayer_chapters td a {
+	color:#3297ff;
+	text-decoration: none;
+	font-weight: 500;
 }
 
 .pwp_chapterbox {

@@ -98,6 +98,10 @@
 		return false;
 	}
 
+	function turnHighlightOff () { 
+		$('.highlight').removeClass('highlight');
+	}
+
 	function checkCurrentURL() {
 		var deepLink;
 		deepLink = parseTimecode(window.location.href);
@@ -448,6 +452,8 @@
 						mark.addClass('paused');
 						player.pause();
 					} else {
+						mark.addClass('highlight');
+						setTimeout(turnHighlightOff, 200);
 						// If there is only one player also set deepLink
 						if (players.length === 1) {
 							// setFragmentURL('t=' + generateTimecode([startTime, endTime]));

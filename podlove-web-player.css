@@ -171,7 +171,7 @@
 .podlovewebplayer_meta h3 a,
 .podlovewebplayer_meta h3 {
 	clear: none;
-	color: #eee!important;
+	color: #fff!important;
 	padding: 7px 0;
 	font-size: 16px;
 	font-weight: bold;
@@ -179,6 +179,7 @@
 	text-transform: none;
 	letter-spacing: 0;
 	text-shadow: none;
+	text-decoration: none;
 }
 
 .podlovewebplayer_meta h3 a {
@@ -206,7 +207,6 @@
 	overflow: hidden;
 	padding: 0px 10px;
 	margin-top: -1px;
-	height: 1px;
 	font-size: 12px;
 	line-height: 1.5;
 	color: #000;

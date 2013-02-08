@@ -420,9 +420,22 @@
 		}
 		// get DOM object of meta info
 		var metainfo = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_meta');
+		var summary = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.summary');
+		
+		summary.each(function() {
+			$(this).data("height", $(this).height());
+			$(this).height('0px');
+		})
+		
 		if (metainfo.length === 1) {
 			metainfo.find('a.infowindow').on('click', function(){
 				$(this).closest('.podlovewebplayer_wrapper').find('.summary').toggleClass('active');
+				if($(this).closest('.podlovewebplayer_wrapper').find('.summary').hasClass('active')) {
+					$(this).closest('.podlovewebplayer_wrapper').find('.summary').height($(this).closest('.podlovewebplayer_wrapper').find('.summary').data("height")+'px');
+				}
+				else {
+					$(this).closest('.podlovewebplayer_wrapper').find('.summary').height('0px');
+				}
 				return false;
 			});
 			metainfo.find('.bigplay').on('click', function(){

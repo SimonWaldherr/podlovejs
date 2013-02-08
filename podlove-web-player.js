@@ -488,7 +488,10 @@
 				marks.find('.timecode code').eq(-1).each(function(){
 					var start = Math.floor($(this).closest('tr').data('start'));
 					var end = Math.floor(player.duration);
-					$(this).text(generateTimecode(end-start));
+					console.log(start);
+					console.log(end);
+					console.log(end-start);
+					$(this).text(generateTimecode([end-start]));
 				});
 			}
 			

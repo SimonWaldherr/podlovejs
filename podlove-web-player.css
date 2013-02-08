@@ -72,6 +72,7 @@
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.timecode {
 	text-align: right;
 	white-space: nowrap;
+	padding-right: 10px!important;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.timecode code {
@@ -392,7 +393,7 @@
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox {
 	display: block;
 	height: auto;
-	border: 1px #000 solid;
+	border: 2px #000 solid;
 	overflow-y: hidden;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;

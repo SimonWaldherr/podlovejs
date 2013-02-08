@@ -138,8 +138,7 @@
 			if (isActive) {
 				mark
 					.addClass('active')
-					.siblings().removeClass('active')
-					
+					.siblings().removeClass('active');
 			}
 			if (!isEnabled && isBuffered) {
 				deepLink = '#t=' + generateTimecode([startTime, endTime]);

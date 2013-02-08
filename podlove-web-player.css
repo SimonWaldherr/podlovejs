@@ -333,7 +333,7 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 }
 
 .podlovewebplayer_chapters .active .chapterplay a[rel=player] span {
-	/*background-position: -1px -16px;*/
+	background-position: -1px -16px;
 }
 
 .podlovewebplayer_chapters .paused .chapterplay a[rel=player] span {

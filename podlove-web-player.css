@@ -163,15 +163,21 @@
 }
 
 .podlovewebplayer_meta .coverart img {
+	border-radius: 12px;
+	height: 80%;
+	top: 8px;
+	position: relative;
 	float: left;
 	margin-right: 10px;
-	height: 100px;
-}
+	box-shadow: 0px 0px 15px 0px #000000; 
+	-webkit-box-shadow: 0px 0px 15px 0px #000000; 
+  }
+
 
 .podlovewebplayer_meta h3 a,
 .podlovewebplayer_meta h3 {
 	clear: none;
-	color: #eee!important;
+	color: #fff!important;
 	padding: 7px 0;
 	font-size: 16px;
 	font-weight: bold;
@@ -179,6 +185,7 @@
 	text-transform: none;
 	letter-spacing: 0;
 	text-shadow: none;
+	text-decoration: none;
 }
 
 .podlovewebplayer_meta h3 a {
@@ -206,22 +213,23 @@
 	overflow: hidden;
 	padding: 0px 10px;
 	margin-top: -1px;
-	height: 1px;
 	font-size: 12px;
 	line-height: 1.5;
 	color: #000;
+	border-left: 1px #111 solid;
+	border-right: 1px #111 solid;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
 	background: url(mediaelement/build/background.png);
-background: rgba(0, 0, 0, 0.9);
-background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(150, 150, 150, 0.9)), to(rgba(0, 0, 0, 0.9)));
-background: -webkit-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: -moz-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: -o-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: -ms-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: rgba(0, 0, 0, 0.9);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(150, 150, 150, 0.9)), to(rgba(0, 0, 0, 0.9)));
+	background: -webkit-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: -moz-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: -o-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: -ms-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 }
 
 .podlovewebplayer_meta + .summary.active {
@@ -231,14 +239,15 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 }
 
 .podlovewebplayer_meta .summary a.closewindow,
-.podlovewebplayer_meta a.infowindow {
+.podlovewebplayer_meta a.infowindow,
+.podlovewebplayer_meta a.chaptertoggle {
 	cursor: pointer;
 	z-index: 111;
 	padding: 0 10px;
-	margin: 0;
+	margin: 0 5px 0 0;
 	position: absolute;
 	right: 9px;
-	bottom: 7px;
+	bottom: 10px;
 	display: block;
 	height: 16px;
 	background: #fff;
@@ -253,6 +262,11 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	-o-border-radius: 8px;
 	border-radius: 8px;
 	text-decoration: none;
+	float: right;
+}
+
+.podlovewebplayer_meta a.chaptertoggle {
+	right: 65px;
 }
 
 .podlovewebplayer_meta .summary a.closewindow:focus,
@@ -260,7 +274,10 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 .podlovewebplayer_meta .summary a.closewindow:active,
 .podlovewebplayer_meta a.infowindow:focus,
 .podlovewebplayer_meta a.infowindow:hover,
-.podlovewebplayer_meta a.infowindow.active {
+.podlovewebplayer_meta a.infowindow.active,
+.podlovewebplayer_meta a.chaptertoggle:focus,
+.podlovewebplayer_meta a.chaptertoggle:hover,
+.podlovewebplayer_meta a.chaptertoggle.active {
 	background: #3a859a;
 	color: #fff;
 	text-decoration: none;
@@ -354,10 +371,22 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	border-radius: 16px;
 }
 
-.podlovewebplayer_wrapper .chapterbox {
+.podlovewebplayer_chapters td b {
+	color: #000;
+	font-weight: bolder;
+}
+
+.podlovewebplayer_chapters td a {
+	color:#3297ff;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox {
 	display: block;
 	height: auto;
 	border: 1px #000 solid;
+	overflow-y: hidden;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
@@ -367,7 +396,7 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 .podlovewebplayer_wrapper .podlovewebplayer_tableend {
 	position: relative;
 	display: block;
-	height: 20px;
+	height: 10px;
 	left: 0px;
 
 	background: #111;

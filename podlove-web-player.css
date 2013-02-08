@@ -244,6 +244,12 @@
 	padding: 20px 10px;
 }
 
+.podlovewebplayer_meta .togglers {
+	position: absolute;
+	right: 9px;
+	bottom: 10px;
+}
+
 .podlovewebplayer_meta .summary a.closewindow,
 .podlovewebplayer_meta a.infowindow,
 .podlovewebplayer_meta a.chaptertoggle {
@@ -252,9 +258,7 @@
 	z-index: 111;
 	padding: 0 10px;
 	margin: 0 5px 0 0;
-	position: absolute;
-	right: 9px;
-	bottom: 10px;
+	
 	display: block;
 	height: 20px;
 	width: 22px;
@@ -268,11 +272,9 @@
 	-o-border-radius: 8px;
 	border-radius: 8px;
 	text-decoration: none;
+	float: left;
 }
 
-.podlovewebplayer_meta a.chaptertoggle {
-	right: 55px;
-}
 
 .podlovewebplayer_meta .summary a.closewindow:focus,
 .podlovewebplayer_meta .summary a.closewindow:hover,

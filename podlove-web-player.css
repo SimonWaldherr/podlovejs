@@ -34,7 +34,7 @@
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters {
 	display: none; /* only show if js works */
-	margin-bottom: 0!important;
+	margin: 0 !important;
 	width: 100%;
 	border-collapse: collapse;
 }

@@ -1,0 +1,3 @@
+[submodule "mediaelement"]
+	path = mediaelement
+	url = git@github.com:johndyer/mediaelement.git

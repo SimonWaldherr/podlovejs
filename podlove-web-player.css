@@ -102,14 +102,14 @@
 	-moz-border-radius-topright: 15px;
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
-	background: url(mediaelement/background.png);
-	background: rgba(0, 0, 0, 0.9);
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50, 50, 50, 0.9)), to(rgba(0, 0, 0, 0.9)));
-	background: -webkit-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
-	background: -moz-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
-	background: -o-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
-	background: -ms-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
-	background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+	background: url(mediaelement/build/background.png);
+	background: #111;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50, 50, 50, 0.9)), to(rgba(12, 12, 12, 0.9)));
+	background: -webkit-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
+	background: -moz-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
+	background: -o-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
+	background: -ms-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
+	background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
 }
 
 /*
@@ -127,6 +127,10 @@
 	margin-right: 20px;
 }
 */
+
+.mejs-container {
+	margin-top: -1px;
+}
 
 .podlovewebplayer_meta .bigplay {
 	float: left;
@@ -210,7 +214,7 @@
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
-	background: url(mediaelement/background.png);
+	background: url(mediaelement/build/background.png);
 background: rgba(0, 0, 0, 0.9);
 background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(150, 150, 150, 0.9)), to(rgba(0, 0, 0, 0.9)));
 background: -webkit-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
@@ -327,8 +331,8 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	top: 4px;
 	text-indent: -1000px;
 	margin: 0 0 0 6px;
-	background: transparent url(mediaelement/controls.png) no-repeat 0 0;
-	background-image: url(mediaelement/controls.svg);
+	background: transparent url(mediaelement/build/controls.png) no-repeat 0 0;
+	background-image: url(mediaelement/build/controls.svg);
 
 }
 
@@ -348,4 +352,29 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	-moz-border-radius: 16px;
 	-o-border-radius: 16px;
 	border-radius: 16px;
+}
+
+.pwp_chapterbox {
+	display: block;
+	height: auto;
+	border: 1px #000 solid;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.podlovewebplayer_wrapper .pwp_tableend {
+	position: relative;
+	display: block;
+	height: 20px;
+	left: 0px;
+
+	background: #111;
+	-webkit-border-bottom-left-radius: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+	-moz-border-radius-bottomleft: 8px;
+	-moz-border-radius-bottomright: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
 }

@@ -41,7 +41,7 @@ if ( // Prevent conflicts with already running versions of PWP
 $podlovewebplayer_index = 1;
 define( 'PODLOVEWEBPLAYER_DIR', plugin_dir_url(__FILE__) );
 define( 'PODLOVEWEBPLAYER_PATH', plugin_dir_path(__FILE__) );
-define( 'PODLOVEWEBPLAYER_MEJS_DIR', PODLOVEWEBPLAYER_DIR . 'mediaelement/' );
+define( 'PODLOVEWEBPLAYER_MEJS_DIR', PODLOVEWEBPLAYER_DIR . 'mediaelement/build/' );
 
 
 /* Activation and De-Activation */

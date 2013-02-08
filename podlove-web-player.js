@@ -305,13 +305,13 @@
 			if (params.chapterlinks != 'false') {
 				class_names += ' linked linked_'+params.chapterlinks;
 			}
-			var tablestring = '<table rel="'+player.id+'" class="'+class_names+'">';
+			var tablestring = '<div class="pwp_chapterbox showonplay active"><table rel="'+player.id+'" class="'+class_names+'">';
 			tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
 			if (params.chapterlinks != 'false') {
 				tablestring += '<th scope="col">Play</th>';
 			}
 			tablestring += '<th scope="col">Title</th><th scope="col">Duration</th></tr></thead>';
-			tablestring += '<tbody></tbody></table>';
+			tablestring += '<tbody></tbody></table></div>';
 			wrapper.append(tablestring);
 			var table = wrapper.find('table[rel='+player.id+']');
 
@@ -371,6 +371,7 @@
 				table.append(rowstring);	
 			});
 		}
+		wrapper.append('<div class="pwp_tableend"></div>');
 
 		// parse deeplink
 		deepLink = parseTimecode(window.location.href);

@@ -204,6 +204,11 @@
 		if (player.tagName == "VIDEO" && typeof $(player).attr('width') !== 'undefined') {
 			params.width = $(player).attr('width');
 		}
+		//duration can be given in seconds or in timecode format
+		if (params.duration && params.duration != parseInt(params.duration)) {
+			var secArray = parseTimecode(params.duration);
+			params.duration = secArray[0];
+		}
 
 		// MEJS options defaults (taken from mediaelementjs.com, slightly adopted for podcasting needs)
 		var mejsoptions = {
@@ -225,7 +230,8 @@
 			showTimecodeFrameCount: false,
 			framesPerSecond: 25,
 			enableKeyboard: true,
-			pauseOtherPlayers: true
+			pauseOtherPlayers: true,
+			duration: 0
 		}
 
 		//transfer width/height to the correct mejs counterparts	
@@ -341,7 +347,7 @@
 					this.duration = generateTimecode([Math.round(this.end-this.start)]);
 				} else {
 					if (params.duration == 0) {
-						this.end = false;
+						this.end = 9999999999;
 						this.duration = '…';
 					} else {
 						this.end = params.duration;
@@ -370,8 +376,9 @@
 				rowstring += '</tr>';
 				table.append(rowstring);	
 			});
+			wrapper.append('<div class="pwp_tableend"></div>');
 		}
-		wrapper.append('<div class="pwp_tableend"></div>');
+		
 
 		// parse deeplink
 		deepLink = parseTimecode(window.location.href);
@@ -380,7 +387,6 @@
 			startAtTime = deepLink[0];
 			stopAtTime = deepLink[1];
 		}
-
 
 		// init MEJS to player
 		mejsoptions.success = function (player) {
@@ -501,9 +507,6 @@
 				marks.find('.timecode code').eq(-1).each(function(){
 					var start = Math.floor($(this).closest('tr').data('start'));
 					var end = Math.floor(player.duration);
-					console.log(start);
-					console.log(end);
-					console.log(end-start);
 					$(this).text(generateTimecode([end-start]));
 				});
 			}

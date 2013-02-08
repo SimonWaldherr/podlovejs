@@ -127,9 +127,10 @@ Disables the fullscreen button for video:
     
 = duration =
 
-Enables display of duration without having to load the media file. Use seconds as a unit:
+Enables display of duration without having to load the media file. Use seconds or timecode as a unit:
     
-    [podlovevideo duration="355"]
+    [podlovevideo duration="3522"]
+    [podloveaudio duration="00:58:42"]
 
 = alwaysShowHours =
 

@@ -398,11 +398,12 @@ function podlovewebplayer_enclosure( $content ) {
 		foreach( $enclosures as $enclosure ) {
 			$type = substr( $enclosure[2], 0, strpos( $enclosure[2], "/" ) );
 			$duration = "";
-			if ( isset( $enclosure[3] ) ) {
-				$duration = "duration='".$enclosure[3]."'";
+			if ( isset( $enclosure[3] ) && $enc3_array = unserialize( $enclosure[3] ) ) {
+				if ( isset( $enc3_array['duration'] ) ) {
+					$duration = "duration='" . $enc3_array['duration'] . "'";
+				}
 			}
-			//$shortcode = '[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'" '.$duration.']';
-			$shortcode = '[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'"]';
+			$shortcode = '[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'" '.$duration.']';
 			$pwpcode = do_shortcode( $shortcode );
 			if ( isset( $wp_options['enclosure_bottom'] ) ) {
 				$content = $content . $pwpcode;

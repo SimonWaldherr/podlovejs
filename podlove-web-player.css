@@ -239,12 +239,13 @@
 }
 
 .podlovewebplayer_meta .summary a.closewindow,
-.podlovewebplayer_meta a.infowindow {
+.podlovewebplayer_meta a.infowindow,
+.podlovewebplayer_meta a.chaptertoggle {
 	cursor: pointer;
 	z-index: 111;
 	padding: 0 10px;
-	margin: 0;
-	position: absolute;
+	margin: 0 5px 0 0;
+	position: relative;
 	right: 9px;
 	bottom: 7px;
 	display: block;
@@ -261,6 +262,7 @@
 	-o-border-radius: 8px;
 	border-radius: 8px;
 	text-decoration: none;
+	float: right;
 }
 
 .podlovewebplayer_meta .summary a.closewindow:focus,
@@ -268,7 +270,10 @@
 .podlovewebplayer_meta .summary a.closewindow:active,
 .podlovewebplayer_meta a.infowindow:focus,
 .podlovewebplayer_meta a.infowindow:hover,
-.podlovewebplayer_meta a.infowindow.active {
+.podlovewebplayer_meta a.infowindow.active,
+.podlovewebplayer_meta a.chaptertoggle:focus,
+.podlovewebplayer_meta a.chaptertoggle:hover,
+.podlovewebplayer_meta a.chaptertoggle.active {
 	background: #3a859a;
 	color: #fff;
 	text-decoration: none;
@@ -377,6 +382,7 @@
 	display: block;
 	height: auto;
 	border: 1px #000 solid;
+	overflow-y: hidden;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
@@ -386,7 +392,7 @@
 .podlovewebplayer_wrapper .pwp_tableend {
 	position: relative;
 	display: block;
-	height: 20px;
+	height: 10px;
 	left: 0px;
 
 	background: #111;

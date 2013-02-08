@@ -303,6 +303,10 @@
 				wrapper.find('.podlovewebplayer_meta').after(
 					'<div class="summary">'+params.summary+'</div>');
 			}
+			if (typeof params.chapters !== 'undefined') {
+				wrapper.find('.podlovewebplayer_meta').append(
+					'<a href="#" class="chaptertoggle" title="show/hide chapters">chapter</a>');
+			}
 		}
 
 		//build chapter table
@@ -427,6 +431,7 @@
 		// get DOM object of meta info
 		var metainfo = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_meta');
 		var summary = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.summary');
+		var chapterdiv = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox');
 		
 		summary.each(function() {
 			$(this).data("height", $(this).height());
@@ -497,6 +502,24 @@
 				}
 				return false;
 			});
+
+		chapterdiv.each(function() {
+			$(this).data("height", $(this).height());
+			$(this).height($(this).data("height"));
+		})
+		
+		if (chapterdiv.length === 1) {
+			metainfo.find('a.chaptertoggle').on('click', function(){
+				$(this).closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox').toggleClass('active');
+				if($(this).closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox').hasClass('active')) {
+					$(this).closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox').height($(this).closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox').data("height")+'px');
+				}
+				else {
+					$(this).closest('.podlovewebplayer_wrapper').find('.pwp_chapterbox').height('0px');
+				}
+				return false;
+			});
+		}
 
 		// wait for the player or you'll get DOM EXCEPTIONS
 		jqPlayer.bind('canplay', function () {

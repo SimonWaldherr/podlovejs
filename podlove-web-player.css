@@ -354,7 +354,7 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	border-radius: 16px;
 }
 
-.pwp_chapterbox {
+.podlovewebplayer_wrapper .chapterbox {
 	display: block;
 	height: auto;
 	border: 1px #000 solid;
@@ -364,7 +364,7 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	transition: all 0.5s;
 }
 
-.podlovewebplayer_wrapper .pwp_tableend {
+.podlovewebplayer_wrapper .podlovewebplayer_tableend {
 	position: relative;
 	display: block;
 	height: 20px;

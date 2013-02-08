@@ -314,7 +314,7 @@
 			if (params.chapterlinks != 'false') {
 				class_names += ' linked linked_'+params.chapterlinks;
 			}
-			var tablestring = '<div class="pwp_chapterbox showonplay active"><table rel="'+player.id+'" class="'+class_names+'">';
+			var tablestring = '<div class="chapterbox showonplay active"><table rel="'+player.id+'" class="'+class_names+'">';
 			tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
 			if (params.chapterlinks != 'false') {
 				tablestring += '<th scope="col">Play</th>';
@@ -379,7 +379,7 @@
 				rowstring += '</tr>';
 				table.append(rowstring);	
 			});
-			wrapper.append('<div class="pwp_tableend"></div>');
+			wrapper.append('<div class="podlovewebplayer_tableend"></div>');
 		}
 		
 

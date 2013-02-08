@@ -170,15 +170,17 @@
 }
 
 .podlovewebplayer_meta .coverart img {
-	border-radius: 12px;
-	height: 80%;
-	top: 8px;
 	position: relative;
 	float: left;
 	margin-right: 10px;
-	box-shadow: 0px 0px 15px 0px #000000; 
-	-webkit-box-shadow: 0px 0px 15px 0px #000000; 
-  }
+	height: 75px;
+	top: 12px;
+	box-shadow: none!important;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	-o-border-radius: 0px;
+	border-radius: 0px;
+}
 
 
 .podlovewebplayer_meta h3 a,

@@ -376,8 +376,9 @@
 				rowstring += '</tr>';
 				table.append(rowstring);	
 			});
+			wrapper.append('<div class="pwp_tableend"></div>');
 		}
-		wrapper.append('<div class="pwp_tableend"></div>');
+		
 
 		// parse deeplink
 		deepLink = parseTimecode(window.location.href);

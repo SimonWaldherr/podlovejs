@@ -286,10 +286,10 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 	-o-border-radius: 13px;
 	border-radius: 13px;
 	cursor: pointer;
-	-webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	-o-transition: all 0.1s;
-	transition: all 0.1s;
+	-webkit-transition: all 0.07s;
+	-moz-transition: all 0.07s;
+	-o-transition: all 0.07s;
+	transition: all 0.07s;
 }
 
 .podlovewebplayer_chapters .chapterplay > a.disabled {
@@ -333,7 +333,7 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 }
 
 .podlovewebplayer_chapters .active .chapterplay a[rel=player] span {
-	background-position: -1px -16px;
+	/*background-position: -1px -16px;*/
 }
 
 .podlovewebplayer_chapters .paused .chapterplay a[rel=player] span {
@@ -342,7 +342,8 @@ background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 
 .podlovewebplayer_chapters .highlight .chapterplay a[rel=player] {
 	padding: 2px;
-	margin: -1px;
+	margin: -2px;
+	display: block;
 	-webkit-border-radius: 16px;
 	-moz-border-radius: 16px;
 	-o-border-radius: 16px;

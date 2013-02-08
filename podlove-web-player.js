@@ -225,7 +225,8 @@
 			showTimecodeFrameCount: false,
 			framesPerSecond: 25,
 			enableKeyboard: true,
-			pauseOtherPlayers: true
+			pauseOtherPlayers: true,
+			duration: 0
 		}
 
 		//transfer width/height to the correct mejs counterparts	
@@ -488,9 +489,6 @@
 				marks.find('.timecode code').eq(-1).each(function(){
 					var start = Math.floor($(this).closest('tr').data('start'));
 					var end = Math.floor(player.duration);
-					console.log(start);
-					console.log(end);
-					console.log(end-start);
 					$(this).text(generateTimecode([end-start]));
 				});
 			}

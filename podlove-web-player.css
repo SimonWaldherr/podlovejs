@@ -59,7 +59,7 @@
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td {
-	padding: 5px;
+	padding: 5px !important;
 	vertical-align: middle;
 	border-bottom: 1px solid #e9e9e9;
 

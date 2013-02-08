@@ -245,9 +245,9 @@
 	z-index: 111;
 	padding: 0 10px;
 	margin: 0 5px 0 0;
-	position: relative;
+	position: absolute;
 	right: 9px;
-	bottom: 7px;
+	bottom: 10px;
 	display: block;
 	height: 16px;
 	background: #fff;
@@ -263,6 +263,10 @@
 	border-radius: 8px;
 	text-decoration: none;
 	float: right;
+}
+
+.podlovewebplayer_meta a.chaptertoggle {
+	right: 65px;
 }
 
 .podlovewebplayer_meta .summary a.closewindow:focus,

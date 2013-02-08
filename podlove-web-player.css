@@ -72,10 +72,17 @@
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.timecode {
 	text-align: right;
 	white-space: nowrap;
+	padding-right: 10px!important;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.timecode code {
+	color: #000;
+	font-size: 0.9em;
+	float: right;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters a.deeplink {
-	background: url(img/deeplink.png) 50% 30% no-repeat;
+	background: url(img/deeplink.png) 50% 100% no-repeat;
 	background-size: 85%;
 	float: right;
 	width: 1em;
@@ -240,36 +247,37 @@
 	padding: 20px 10px;
 }
 
+.podlovewebplayer_meta .togglers {
+	position: absolute;
+	right: 9px;
+	bottom: 10px;
+}
+
 .podlovewebplayer_meta .summary a.closewindow,
 .podlovewebplayer_meta a.infowindow,
 .podlovewebplayer_meta a.chaptertoggle {
+	font: bold 16px/20px arial, sans-serif;
 	cursor: pointer;
 	z-index: 111;
 	padding: 0 10px;
 	margin: 0 5px 0 0;
-	position: absolute;
-	right: 9px;
-	bottom: 10px;
+	
 	display: block;
-	height: 16px;
+	height: 20px;
+	width: 22px;
 	background: #fff;
 	color: #000;
-	font-size: 12px;
-	text-transform: uppercase!important;
+	/*text-transform: uppercase!important;*/
 	letter-spacing: 1px;
 	text-align: center;
-	line-height: 16px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	-o-border-radius: 8px;
 	border-radius: 8px;
 	text-decoration: none;
-	float: right;
+	float: left;
 }
 
-.podlovewebplayer_meta a.chaptertoggle {
-	right: 65px;
-}
 
 .podlovewebplayer_meta .summary a.closewindow:focus,
 .podlovewebplayer_meta .summary a.closewindow:hover,
@@ -387,7 +395,7 @@
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox {
 	display: block;
 	height: auto;
-	border: 1px #000 solid;
+	border: 2px #000 solid;
 	overflow-y: hidden;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -400,8 +408,7 @@
 	display: block;
 	height: 10px;
 	left: 0px;
-
-	background: #111;
+	background: #000;
 	-webkit-border-bottom-left-radius: 8px;
 	-webkit-border-bottom-right-radius: 8px;
 	-moz-border-radius-bottomleft: 8px;

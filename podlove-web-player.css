@@ -74,8 +74,14 @@
 	white-space: nowrap;
 }
 
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.timecode code {
+	color: #000;
+	font-size: 0.9em;
+	float: right;
+}
+
 .podlovewebplayer_wrapper .podlovewebplayer_chapters a.deeplink {
-	background: url(img/deeplink.png) 50% 30% no-repeat;
+	background: url(img/deeplink.png) 50% 100% no-repeat;
 	background-size: 85%;
 	float: right;
 	width: 1em;

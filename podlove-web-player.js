@@ -323,8 +323,6 @@
 		}
 
 		wrapper.append('<div class="controlbox"></div>');
-		wrapper.find('.controlbox').append(
-			'<a href="#" class="rewindbutton infobuttons icon-backward" title="rewind"></a>');
 		if (typeof params.chapters !== 'undefined') {
 			wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a>'
 																				+'<a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>')
@@ -332,7 +330,9 @@
 		else {
 			wrapper.find('.controlbox').css('background', '#000');
 		}
-		wrapper.find('.controlbox').append('<a href="#" class="forwardbutton infobuttons icon-forward" title="fast forward"></a>');
+		wrapper.find('.controlbox').append(
+			'<a href="#" class="rewindbutton infobuttons icon-backward" title="Rewind 30 seconds"></a>');
+		wrapper.find('.controlbox').append('<a href="#" class="forwardbutton infobuttons icon-forward" title="Skip 30 seconds"></a>');
 		if (typeof wrapper.closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href') !== 'undefined') {
 			wrapper.find('.controlbox').append('<a href="#" class="currentbutton infobuttons icon-link" title="get current position link"></a>');
 			wrapper.find('.controlbox').append('<a href="#" target="_blank" class="tweetbutton infobuttons icon-twitter" title="tweet current position"></a>');
@@ -524,7 +524,7 @@
 				return false;
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.tweetbutton').click(function(){
-				window.open('https://twitter.com/share?url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]), 'tweet it', 'width=550,height=420,resizable=yes');
+				window.open('https://twitter.com/share?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]), 'tweet it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
 		}

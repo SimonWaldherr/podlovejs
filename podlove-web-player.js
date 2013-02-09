@@ -306,11 +306,11 @@
 			}
 			if (typeof params.chapters !== 'undefined') {
 				wrapper.find('.togglers').append(
-					'<a href="#" class="chaptertoggle" title="show/hide chapters">≡</a>');
+					'<a href="#" class="chaptertoggle infobuttons icon-list" title="show/hide chapters"></a>');
 			}
 			if (typeof params.summary !== 'undefined') {
 				wrapper.find('.togglers').append(
-					'<a href="#" class="infowindow" title="more information on the episode">i</a>');
+					'<a href="#" class="infowindow infobuttons icon-info-sign" title="more information on the episode"></a>');
 				wrapper.find('.podlovewebplayer_meta').after(
 					'<div class="summary">'+params.summary+'</div>');
 			}

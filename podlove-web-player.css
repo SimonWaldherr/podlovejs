@@ -294,6 +294,10 @@
 	background: linear-gradient(to bottom, #000000 0%,#000000 40%,#444444 100%);
 }
 
+.podlovewebplayer_wrapper .controlbox a.infobuttons {
+	margin: 30px;
+}
+
 .podlovewebplayer_wrapper .controlbox.active {
 	padding: 3px 10px 0px 10px;
 	font-size: 8px;

@@ -233,7 +233,8 @@
 	font-size: 13px!important;
 }
 
-.podlovewebplayer_meta + .summary {
+.podlovewebplayer_meta + .summary,
+.podlovewebplayer_wrapper .controlbox {
 	overflow: hidden;
 	padding: 0px 10px;
 	margin-top: -1px;
@@ -257,20 +258,20 @@
 }
 
 .podlovewebplayer_meta + .summary.active {
-	min-height: 38px;
+	min-height: 35px;
 	height: auto;
 	padding: 20px 10px;
 }
 
-.summary.active a:visited {
+.podlovewebplayer_wrapper .summary.active a:visited {
 	color: blue;
 }
 
-.summary.active a:hover {
+.podlovewebplayer_wrapper .summary.active a:hover {
 	text-decoration: underline;
 }
 
-.summary.active a {
+.podlovewebplayer_wrapper .summary.active a {
 	text-decoration: none;
 }
 
@@ -280,8 +281,28 @@
 	bottom: 10px;
 }
 
+.podlovewebplayer_wrapper .controlbox {
+	height: 0px;
+	font-size: 4px;
+	text-align: center;
+	background: #000000;
+	background: -moz-linear-gradient(top, #000000 0%, #000000 40%, #444444 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(40%,#000000), color-stop(100%,#444444));
+	background: -webkit-linear-gradient(top, #000000 0%,#000000 40%,#444444 100%);
+	background: -o-linear-gradient(top, #000000 0%,#000000 40%,#444444 100%);
+	background: -ms-linear-gradient(top, #000000 0%,#000000 40%,#444444 100%);
+	background: linear-gradient(to bottom, #000000 0%,#000000 40%,#444444 100%);
+}
+
+.podlovewebplayer_wrapper .controlbox.active {
+	padding: 3px 10px 0px 10px;
+	font-size: 8px;
+}
+
 .podlovewebplayer_meta .togglers .infobuttons,
-.podlovewebplayer_meta .togglers .infobuttons a {
+.podlovewebplayer_meta .togglers .infobuttons a,
+.podlovewebplayer_wrapper .controlbox .infobuttons,
+.podlovewebplayer_wrapper .controlbox .infobuttons a {
 	font-family: FontAwesome;
 	font-weight: normal;
 	font-style: normal;
@@ -292,7 +313,9 @@
 }
 
 .podlovewebplayer_meta .togglers .infobuttons:hover,
-.podlovewebplayer_meta .togglers .infobuttons a:hover {
+.podlovewebplayer_meta .togglers .infobuttons a:hover,
+.podlovewebplayer_wrapper .controlbox .infobuttons:hover,
+.podlovewebplayer_wrapper .controlbox .infobuttons a:hover  {
 	text-shadow: 0px 0px 4px #FFFFFF;
 	filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
 	cursor: pointer;
@@ -401,6 +424,7 @@
 	height: auto;
 	border: 3px #000 solid;
 	border-bottom: 0px #000 solid;
+	border-top: 0px;
 	overflow-y: hidden;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;

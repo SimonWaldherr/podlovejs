@@ -309,17 +309,16 @@
 			if (typeof params.summary !== 'undefined' || typeof params.chapters !== 'undefined') {
 				wrapper.find('.podlovewebplayer_meta').append('<div class="togglers"></div>');
 			}
-			if (typeof params.chapters !== 'undefined') {
-				wrapper.find('.togglers').append(
-					'<a href="#" class="chaptertoggle infobuttons icon-list" title="show/hide chapters"></a>');
-			}
 			if (typeof params.summary !== 'undefined') {
 				wrapper.find('.togglers').append(
 					'<a href="#" class="infowindow infobuttons icon-info-sign" title="more information on the episode"></a>');
 				wrapper.find('.podlovewebplayer_meta').after(
 					'<div class="summary">'+params.summary+'</div>');
 			}
-			
+			if (typeof params.chapters !== 'undefined') {
+				wrapper.find('.togglers').append(
+					'<a href="#" class="chaptertoggle infobuttons icon-list" title="show/hide chapters"></a>');
+			}
 		}
 
 		//build chapter table

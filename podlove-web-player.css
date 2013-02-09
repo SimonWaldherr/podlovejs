@@ -223,7 +223,7 @@
 }
 
 .podlovewebplayer_meta .subtitle {
-	margin-right: 7px;
+	margin-right: 75px;
 	font-size: 12px;
 	color: #eee!important;
 }
@@ -260,6 +260,18 @@
 	min-height: 38px;
 	height: auto;
 	padding: 20px 10px;
+}
+
+.summary.active a:visited {
+	color: blue;
+}
+
+.summary.active a:hover {
+	text-decoration: underline;
+}
+
+.summary.active a {
+	text-decoration: none;
 }
 
 .podlovewebplayer_meta .togglers {

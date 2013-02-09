@@ -314,6 +314,7 @@
 	font-size: 2em;
 	margin: 5px;
 	text-shadow: 0px 0px 4px #000000;
+	text-decoration: none;
 }
 
 .podlovewebplayer_meta .togglers .infobuttons:hover,
@@ -321,6 +322,7 @@
 .podlovewebplayer_wrapper .controlbox .infobuttons:hover,
 .podlovewebplayer_wrapper .controlbox .infobuttons a:hover  {
 	text-shadow: 0px 0px 4px #FFFFFF;
+	text-decoration: none;
 	filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
 	cursor: pointer;
 }

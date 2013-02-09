@@ -188,6 +188,8 @@
 
 	$.fn.podlovewebplayer = function(options) {
 		var player = this[0];
+		var richplayer = false;
+		var haschapters = false;
 
 		//handle default values for params
 		var params = $.extend({}, {
@@ -275,6 +277,9 @@
 				typeof $(player).attr('poster') !== 'undefined'
 				)) {
 
+			//set status variable
+			var richplayer = true;
+
 			//kill play/pause button from miniplayer
 			$.each(mejsoptions.features, function(i){
 				if (this == 'playpause') {
@@ -319,6 +324,8 @@
 
 		//build chapter table
 		if (typeof params.chapters !== 'undefined') {
+			haschapters = true;
+
 			var class_names = 'podlovewebplayer_chapters';
 			if (params.chapterlinks != 'false') {
 				class_names += ' linked linked_'+params.chapterlinks;
@@ -389,7 +396,11 @@
 				table.append(rowstring);	
 			});
 		}
-		wrapper.append('<div class="podlovewebplayer_tableend"></div>');
+
+		if (richplayer || haschapters) {
+			wrapper.append('<div class="podlovewebplayer_tableend"></div>');
+		}
+		
 
 		// parse deeplink
 		deepLink = parseTimecode(window.location.href);

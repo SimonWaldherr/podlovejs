@@ -319,7 +319,7 @@
 				wrapper.find('.togglers').append(
 					'<a href="#" class="chaptertoggle infobuttons icon-list" title="show/hide chapters"></a>');
 			}
-			wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons icon-dashboard" title="show/hide controls box"></a>')
+			wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons icon-time" title="show/hide controls box"></a>')
 		}
 
 		wrapper.append('<div class="controlbox"></div>');

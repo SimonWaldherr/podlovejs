@@ -199,12 +199,17 @@
 	color: #fff!important;
 	padding: 7px 0 0 0;
 	font-size: 16px;
+	line-height: 29px;
 	font-weight: bold;
 	margin: 0!important;
 	text-transform: none;
 	letter-spacing: 0;
 	text-shadow: none;
 	text-decoration: none;
+}
+
+.podlovewebplayer_meta h3 a {
+	line-height: 20px;
 }
 
 .podlovewebplayer_meta h3 a {
@@ -263,46 +268,23 @@
 	bottom: 10px;
 }
 
-.podlovewebplayer_meta .summary a.closewindow,
-.podlovewebplayer_meta a.infowindow,
-.podlovewebplayer_meta a.chaptertoggle {
-	font: bold 16px/20px arial, sans-serif;
-	cursor: pointer;
-	z-index: 111;
-	padding: 0 10px;
-	margin: 0 5px 0 0;
-	
-	display: block;
-	height: 20px;
-	width: 22px;
-	background: #fff;
-	color: #000;
-	/*text-transform: uppercase!important;*/
-	letter-spacing: 1px;
-	text-align: center;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	-o-border-radius: 8px;
-	border-radius: 8px;
-	text-decoration: none;
-	float: left;
-}
-
-
-.podlovewebplayer_meta .summary a.closewindow:focus,
-.podlovewebplayer_meta .summary a.closewindow:hover,
-.podlovewebplayer_meta .summary a.closewindow:active,
-.podlovewebplayer_meta a.infowindow:focus,
-.podlovewebplayer_meta a.infowindow:hover,
-.podlovewebplayer_meta a.infowindow.active,
-.podlovewebplayer_meta a.chaptertoggle:focus,
-.podlovewebplayer_meta a.chaptertoggle:hover,
-.podlovewebplayer_meta a.chaptertoggle.active {
-	background: #3a859a;
+.podlovewebplayer_meta .togglers .infobuttons,
+.podlovewebplayer_meta .togglers .infobuttons a {
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
 	color: #fff;
-	text-decoration: none;
+	font-size: 2em;
+	margin: 5px;
+	text-shadow: 0px 0px 5px #000000;
 }
 
+.podlovewebplayer_meta .togglers .infobuttons:hover,
+.podlovewebplayer_meta .togglers .infobuttons a:hover {
+	text-shadow: 0px 0px 5px #FFFFFF;
+	filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
+	cursor: pointer;
+}
 
 .podlovewebplayer_chapters * {
 	font-size: 13px;

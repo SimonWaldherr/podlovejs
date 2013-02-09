@@ -393,19 +393,22 @@
 				// deeplink, start and end
 				var deeplink_chap = '#t=' + generateTimecode( [this.start, this.end] );
 				var rowstring = '<tr data-start="'+this.start+'" data-end="'+this.end+'">';
+				rowstring += '<td class="chapternr">'+(parseInt(i)+1)+'</td>';
 
 				if (params.chapterlinks != 'false') {
 					var linkclass = "";
 					if (params.chapterlinks != 'all') { linkclass = ' class="disabled"'; }
+					
 					rowstring += '<td class="chapterplay">';
 					rowstring += '<a rel="player" title="play chapter" ';
 					rowstring += 'data-start="' + deeplink + '"' + linkclass + '><span>»</span></a>';
 					rowstring += '</td>';
 				}
+				rowstring += '<td class="starttime"><code>'+generateTimecode( [this.start] )+'</code></td>';
 				rowstring += '<td>'+this.title+'</td>';
 				rowstring += '<td class="timecode">'+"\n";
-				rowstring += '<a class="deeplink" href="' + deeplink_chap;
-				rowstring += '" title="chapter deeplink">#</a> '+"\n";
+				//rowstring += '<a class="deeplink" href="' + deeplink_chap;
+				//rowstring += '" title="chapter deeplink">#</a> '+"\n";
 				rowstring += '<code>' + this.duration + '</code>' + "\n";
 				rowstring += '</td>'+"\n";
 				rowstring += '</tr>';
@@ -504,19 +507,43 @@
 				return false;
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.prevbutton').click(function(){
-				player.setCurrentTime($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').prev().data('start'));
+				if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
+					player.setCurrentTime($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').prev().data('start'));
+				}
+				else {
+					player.play();
+				}
+				
 				return false;
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.nextbutton').click(function(){
-				player.setCurrentTime($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').next().data('start'));
+				if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
+					player.setCurrentTime($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').next().data('start'));
+				}
+				else {
+					player.play();
+				}
+				
 				return false;
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.rewindbutton').click(function(){
-				player.setCurrentTime(player.currentTime-30);
+				if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
+					player.setCurrentTime(player.currentTime-30);
+				}
+				else {
+					player.play();
+				}
+				
 				return false;
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.forwardbutton').click(function(){
-				player.setCurrentTime(player.currentTime+30);
+				if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
+					player.setCurrentTime(player.currentTime+30);
+				}
+				else {
+					player.play();
+				}
+				
 				return false;
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.currentbutton').click(function(){

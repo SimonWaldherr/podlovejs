@@ -324,6 +324,18 @@
 	font-size: 13px;
 }
 
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.chapternr {
+	min-width: 0px;
+	width: 20px;
+	padding-left: 0px;
+	text-align: center;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.starttime {
+	width: 50px;
+	text-align: right;
+}
+
 .podlovewebplayer_chapters .chapterplay {
 	width: 25px;
 	padding-right: 0;
@@ -429,6 +441,12 @@
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .timecode code,
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .starttime code {
+	font-family: Courier, "Courier New", monospace;
+	text-align: right;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_tableend {

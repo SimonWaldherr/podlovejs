@@ -7,7 +7,7 @@
 		players = [],
 		// Timecode as described in http://podlove.org/deep-link/
 		// and http://www.w3.org/TR/media-frags/#fragment-dimensions
-		timecodeRegExp = /(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?([,-](\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?)?/;
+		timecodeRegExp = /(\d+:)?(\d+):(\d+)(\.\d+)?([,-](\d+:)?(\d+):(\d+)(\.\d+)?)?/;
 
 	/**
 	 * return number as string lefthand filled with zeros
@@ -319,7 +319,7 @@
 				wrapper.find('.togglers').append(
 					'<a href="#" class="chaptertoggle infobuttons icon-list" title="show/hide chapters"></a>');
 			}
-			wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons icon-cogs" title="show/hide controls box"></a>')
+			wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons icon-time" title="show/hide controls box"></a>')
 		}
 
 		wrapper.append('<div class="controlbox"></div>');
@@ -335,6 +335,7 @@
 		wrapper.find('.controlbox').append('<a href="#" class="forwardbutton infobuttons icon-forward" title="fast forward"></a>');
 		if (typeof wrapper.closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href') !== 'undefined') {
 			wrapper.find('.controlbox').append('<a href="#" class="currentbutton infobuttons icon-link" title="get current position link"></a>');
+			wrapper.find('.controlbox').append('<a href="#" target="_blank" class="tweetbutton infobuttons icon-twitter" title="tweet current position"></a>');
 		}
 
 		//build chapter table
@@ -520,6 +521,10 @@
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.currentbutton').click(function(){
 				window.prompt('the uri of the current position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')+'#t='+generateTimecode([player.currentTime]));
+				return false;
+			});
+			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.tweetbutton').click(function(){
+				window.open('https://twitter.com/share?url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]), 'tweet it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
 		}

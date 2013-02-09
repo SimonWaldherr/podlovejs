@@ -240,21 +240,14 @@
 	margin-top: -1px;
 	font-size: 12px;
 	line-height: 1.5;
-	color: #000;
+	color: #fff;
 	border-left: 3px #111 solid;
 	border-right: 3px #111 solid;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
-	background: url(mediaelement/build/background.png);
-	background: rgba(0, 0, 0, 0.9);
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(150, 150, 150, 0.9)), to(rgba(0, 0, 0, 0.9)));
-	background: -webkit-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-	background: -moz-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-	background: -o-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-	background: -ms-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-	background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: rgb(36,36,36);
 }
 
 .podlovewebplayer_meta + .summary.active {
@@ -286,12 +279,6 @@
 	font-size: 4px;
 	text-align: center;
 	background: #000000;
-	background: -moz-linear-gradient(top, #000000 0%, #000000 40%, #444444 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(40%,#000000), color-stop(100%,#444444));
-	background: -webkit-linear-gradient(top, #000000 0%,#000000 40%,#444444 100%);
-	background: -o-linear-gradient(top, #000000 0%,#000000 40%,#444444 100%);
-	background: -ms-linear-gradient(top, #000000 0%,#000000 40%,#444444 100%);
-	background: linear-gradient(to bottom, #000000 0%,#000000 40%,#444444 100%);
 }
 
 .podlovewebplayer_wrapper .controlbox a.infobuttons {
@@ -299,7 +286,7 @@
 }
 
 .podlovewebplayer_wrapper .controlbox.active {
-	padding: 3px 10px 0px 10px;
+	padding: 3px 10px 4px 10px;
 	font-size: 8px;
 }
 
@@ -311,10 +298,16 @@
 	font-weight: normal;
 	font-style: normal;
 	color: #fff;
-	font-size: 2em;
+	font-size: 1.75em;
 	margin: 5px;
 	text-shadow: 0px 0px 4px #000000;
 	text-decoration: none;
+}
+
+.podlovewebplayer_wrapper .controlbox .infobuttons,
+.podlovewebplayer_wrapper .controlbox .infobuttons a {
+	margin: 30px;
+	font-size: 2.4em;
 }
 
 .podlovewebplayer_meta .togglers .infobuttons:hover,

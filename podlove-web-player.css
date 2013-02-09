@@ -54,6 +54,16 @@
     width: 1px;
 }
 
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr {
+	color: black;
+	background: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f2f2f2));
+	background: -webkit-linear-gradient(top, #ffffff 0%,#f2f2f2 100%);
+	background: -o-linear-gradient(top, #ffffff 0%,#f2f2f2 100%);
+	background: -ms-linear-gradient(top, #ffffff 0%,#f2f2f2 100%);
+	background: linear-gradient(to bottom, #ffffff 0%,#f2f2f2 100%);
+}
+
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active {
 	background: #a9cbdf;
 }
@@ -103,12 +113,12 @@
 	background: #000;
 	height: 100px;
 	margin-bottom: 1px;
-	-webkit-border-top-left-radius: 15px;
-	-webkit-border-top-right-radius: 15px;
-	-moz-border-radius-topleft: 15px;
-	-moz-border-radius-topright: 15px;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	background: url(mediaelement/build/background.png);
 	background: #111;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50, 50, 50, 0.9)), to(rgba(12, 12, 12, 0.9)));
@@ -187,7 +197,7 @@
 .podlovewebplayer_meta h3 {
 	clear: none;
 	color: #fff!important;
-	padding: 7px 0;
+	padding: 7px 0 0 0;
 	font-size: 16px;
 	font-weight: bold;
 	margin: 0!important;
@@ -225,8 +235,8 @@
 	font-size: 12px;
 	line-height: 1.5;
 	color: #000;
-	border-left: 1px #111 solid;
-	border-right: 1px #111 solid;
+	border-left: 3px #111 solid;
+	border-right: 3px #111 solid;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
@@ -395,7 +405,8 @@
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox {
 	display: block;
 	height: auto;
-	border: 2px #000 solid;
+	border: 3px #000 solid;
+	border-bottom: 0px #000 solid;
 	overflow-y: hidden;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -406,13 +417,13 @@
 .podlovewebplayer_wrapper .podlovewebplayer_tableend {
 	position: relative;
 	display: block;
-	height: 10px;
+	height: 11px;
 	left: 0px;
 	background: #000;
-	-webkit-border-bottom-left-radius: 8px;
-	-webkit-border-bottom-right-radius: 8px;
-	-moz-border-radius-bottomleft: 8px;
-	-moz-border-radius-bottomright: 8px;
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }

@@ -74,8 +74,15 @@
 	background: linear-gradient(to bottom, #efefef 0%,#d2d2d2 100%);
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active {
-	background: #a9cbdf;
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active,
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active:hover {
+	background: #a6c9dd;
+	background: -moz-linear-gradient(top, #a6c9dd 0%, #d8f1ff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a6c9dd), color-stop(100%,#d8f1ff));
+	background: -webkit-linear-gradient(top, #a6c9dd 0%,#d8f1ff 100%);
+	background: -o-linear-gradient(top, #a6c9dd 0%,#d8f1ff 100%);
+	background: -ms-linear-gradient(top, #a6c9dd 0%,#d8f1ff 100%);
+	background: linear-gradient(to bottom, #a6c9dd 0%,#d8f1ff 100%);
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td {

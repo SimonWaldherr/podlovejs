@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Podlove Web Player Standalone</title>
+
+	<link href="mediaelement/build/mediaelementplayer.min.css" rel="stylesheet" media="screen" type="text/css" />
+	<link href="fontawesome/css/font-awesome.min.css" rel="stylesheet" media="screen" type="text/css" />
+	<link href="podlove-web-player.css" rel="stylesheet" media="screen" type="text/css" />
+
+	<script src="libs/html5shiv.js"></script>
+	<script src="libs/jquery-1.9.1.min.js"></script>
+	<script src="mediaelement/build/mediaelement-and-player.min.js"></script>
+	<script src="podlove-web-player.js"></script>
+</head>
+
+<body>
+
+
+	<audio id="testplayer">
+		<source src="samples/podlove-test-track.mp4" type="audio/mp4" />
+		<source src="samples/podlove-test-track.oga" type="audio/ogg" />
+		<source src="samples/podlove-test-track.opus" type="audio/ogg" />
+		<source src="samples/podlove-test-track.mp3" type="audio/mpeg" />
+
+		<h3 data-pwp="title">PWP001 – One big title</h3>
+		<h4 data-pwp="subtitle">Here goes the subtitle</h4>
+		<p data-pwp="summary">Here’s for the summay type of people who feel like having to describe what’s in this recording. There should be things in here and other things. But mostly words.</p>
+		<div data-pwp="chapters">
+			00:00:00.000 Chapter 1 Description
+			00:00:01.333 Chapter 2 Description
+
+			
+		</div>
+	</audio>
+	<script>
+		$('#testplayer').podlovewebplayer({
+			duration: '2',
+			poster: 'samples/posterimage.jpg',
+			width: '640',
+			chapterlinks: 'all'
+		});
+	</script>
+	
+
+	
+</body>
+</html>

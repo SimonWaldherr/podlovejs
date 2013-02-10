@@ -69,10 +69,14 @@
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td {
-	padding: 6px 5px 4px 5px !important;
+	padding: 8px 5px 6px 5px !important;
 	vertical-align: middle;
 	border-bottom: 1px solid #e9e9e9;
+	cursor: pointer!important;
+}
 
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr:hover {
+	background: #e3e3e3;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.title {

@@ -314,10 +314,14 @@
 			
 			//
 			if (typeof params.summary !== 'undefined') {
+				var summaryActive = "";
+				if (params.summaryVisible == true) {
+					summaryActive = " active";
+				}
 				wrapper.find('.togglers').append(
 					'<a href="#" class="infowindow infobuttons icon-info-sign" title="more information on the episode"></a>');
 				wrapper.find('.podlovewebplayer_meta').after(
-					'<div class="summary">'+params.summary+'</div>');
+					'<div class="summary'+summaryActive+'">'+params.summary+'</div>');
 			}
 			if (typeof params.chapters !== 'undefined') {
 				wrapper.find('.togglers').append(
@@ -349,10 +353,11 @@
 			}
 			var tablestring = '<div class="podlovewebplayer_chapterbox showonplay active"><table rel="'+player.id+'" class="'+class_names+'">';
 			tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
-			if (params.chapterlinks != 'false') {
-				tablestring += '<th scope="col">Play</th>';
-			}
-			tablestring += '<th scope="col">Title</th><th scope="col">Duration</th></tr></thead>';
+			tablestring += '<th scope="col">Chapter Number</th>';
+			tablestring += '<th scope="col">Start time</th>';
+			tablestring += '<th scope="col">Title</th>';
+			tablestring += '<th scope="col">Duration</th>';
+			tablestring += '</tr></thead>';
 			tablestring += '<tbody></tbody></table></div>';
 			wrapper.append(tablestring);
 			var table = wrapper.find('table[rel='+player.id+']');
@@ -402,10 +407,10 @@
 					var linkclass = "";
 					if (params.chapterlinks != 'all') { linkclass = ' class="disabled"'; }
 					
-					rowstring += '<td class="chapterplay">';
-					rowstring += '<a rel="player" title="play chapter" ';
-					rowstring += 'data-start="' + deeplink + '"' + linkclass + '><span>»</span></a>';
-					rowstring += '</td>';
+					//rowstring += '<td class="chapterplay">';
+					//rowstring += '<a rel="player" title="play chapter" ';
+					//rowstring += 'data-start="' + deeplink + '"' + linkclass + '><span>»</span></a>';
+					//rowstring += '</td>';
 				}
 				rowstring += '<td class="starttime"><code>'+generateTimecode( [Math.round(this.start)] )+'</code></td>';
 				rowstring += '<td>'+this.title+'</td>';
@@ -475,9 +480,7 @@
 		
 		summary.each(function() {
 			$(this).data("height", $(this).height());
-			if (params.summaryVisible == true) {
-				$(this).addClass('active');
-			} else {
+			if (!$(this).hasClass('active')) {
 				$(this).height('0px');
 			}
 		})

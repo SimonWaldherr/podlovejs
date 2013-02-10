@@ -510,7 +510,13 @@
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.prevbutton').click(function(){
 				if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
-					player.setCurrentTime($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').prev().data('start'));
+					if(player.currentTime > $(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').data('start')+10) {
+						player.setCurrentTime($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').data('start'));
+					}
+					else {
+						player.setCurrentTime($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').prev().data('start'));
+					}
+					
 				}
 				else {
 					player.play();

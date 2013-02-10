@@ -374,6 +374,7 @@
 			//prepare row data
 			var tempchapters = {};
 			var i = 0;
+			var maxchapterlength = 0;
 
 			//first round: kill empty rows and build structured object
 			$.each(params.chapters.split("\n"), function(){
@@ -386,22 +387,39 @@
 				}
 			});
 
-			//second round: build actual dom table
+			//second round: collect more information
 			$.each(tempchapters, function(i){
-
+				if (typeof tempchapters[parseInt(i)+1] !== 'undefined') {
+					this.end = 	tempchapters[parseInt(i)+1].start;
+					if(Math.round(this.end-this.start) > maxchapterlength) {
+						maxchapterlength = Math.round(this.end-this.start);
+					}
+				}
+			})
+			
+			//third round: build actual dom table
+			$.each(tempchapters, function(i){
 				var deeplink = document.location;
 
 				var finalchapter = (typeof tempchapters[parseInt(i)+1] === 'undefined') ? true : false;
 				if (!finalchapter) {
 					this.end = 	tempchapters[parseInt(i)+1].start;
-					this.duration = generateTimecode([Math.round(this.end-this.start)]);
+					if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
+						this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
+					} else {
+						this.duration = generateTimecode([Math.round(this.end-this.start)]);
+					}
 				} else {
 					if (params.duration == 0) {
 						this.end = 9999999999;
 						this.duration = '…';
 					} else {
 						this.end = params.duration;
-						this.duration = generateTimecode([Math.round(params.duration-this.start)]);
+						if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
+							this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
+						} else {
+							this.duration = generateTimecode([Math.round(this.end-this.start)]);
+						}
 					}
 				}
 

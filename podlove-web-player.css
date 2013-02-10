@@ -307,6 +307,7 @@
 }
 
 .podlovewebplayer_wrapper .controlbox.active {
+	height: 25px;
 	padding: 3px 10px 4px 10px;
 	font-size: 8px;
 }

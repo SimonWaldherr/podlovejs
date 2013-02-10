@@ -330,7 +330,12 @@
 			wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons icon-time" title="show/hide controls box"></a>')
 		}
 
-		wrapper.append('<div class="controlbox"></div>');
+		var timecontrolsActive = "";
+		if (params.summaryVisible == true) {
+			timecontrolsActive = " active";
+		}
+		wrapper.append('<div class="controlbox'+timecontrolsActive+'"></div>');
+		
 		if (typeof params.chapters !== 'undefined') {
 			wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a>'
 						+'<a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>')
@@ -351,7 +356,11 @@
 			if (params.chapterlinks != 'false') {
 				class_names += ' linked linked_'+params.chapterlinks;
 			}
-			var tablestring = '<div class="podlovewebplayer_chapterbox showonplay active"><table rel="'+player.id+'" class="'+class_names+'">';
+			var chaptersActive = "";
+			if (params.chaptersVisible == true) {
+				chaptersActive = " active";
+			}
+			var tablestring = '<div class="podlovewebplayer_chapterbox showonplay'+chaptersActive+'"><table rel="'+player.id+'" class="'+class_names+'">';
 			tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
 			tablestring += '<th scope="col">Chapter Number</th>';
 			tablestring += '<th scope="col">Start time</th>';
@@ -497,11 +506,6 @@
 			});
 			metainfo.find('a.showcontrols').on('click', function(){
 				$(this).closest('.podlovewebplayer_wrapper').find('.controlbox').toggleClass('active');
-				if($(this).closest('.podlovewebplayer_wrapper').find('.controlbox').hasClass('active')) {
-					$(this).closest('.podlovewebplayer_wrapper').find('.controlbox').height('25px');
-				} else {
-					$(this).closest('.podlovewebplayer_wrapper').find('.controlbox').height('0px');
-				}
 				return false;
 			});
 			metainfo.find('.bigplay').on('click', function(){
@@ -608,6 +612,9 @@
 		chapterdiv.each(function() {
 			$(this).data("height", $(this).height());
 			$(this).height($(this).data("height"));
+			if(!$(this).hasClass('active')) {
+				$(this).height('0px');
+			}
 		})
 		
 		if (chapterdiv.length === 1) {

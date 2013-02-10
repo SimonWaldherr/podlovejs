@@ -409,7 +409,7 @@
 	background-position: 0 0;
 }
 
-.podlovewebplayer_chapters .highlight .chapterplay a[rel=player] {
+.podlovewebplayer_chapters .chaptertr:active .chapterplay a[rel=player] {
 	padding: 2px;
 	margin: -2px;
 	display: block;

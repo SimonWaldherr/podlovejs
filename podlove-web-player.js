@@ -421,12 +421,12 @@
 					//rowstring += 'data-start="' + deeplink + '"' + linkclass + '><span>»</span></a>';
 					//rowstring += '</td>';
 				}
-				rowstring += '<td class="starttime"><code>'+generateTimecode( [Math.round(this.start)] )+'</code></td>';
+				rowstring += '<td class="starttime"><span>'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
 				rowstring += '<td>'+this.title+'</td>';
 				rowstring += '<td class="timecode">'+"\n";
 				//rowstring += '<a class="deeplink" href="' + deeplink_chap;
 				//rowstring += '" title="chapter deeplink">#</a> '+"\n";
-				rowstring += '<code>' + this.duration + '</code>' + "\n";
+				rowstring += '<span>' + this.duration + '</span>' + "\n";
 				rowstring += '</td>'+"\n";
 				rowstring += '</tr>';
 				table.append(rowstring);	

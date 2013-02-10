@@ -106,7 +106,7 @@
 	text-align: right;
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td code {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td span {
 	color: #333!important;
 	font: normal 1em Menlo, Consolas, "Source Code Pro", "Vera Sans Mono", fixed!important;
 	text-align: right;
@@ -431,14 +431,10 @@
 	background-position: 0 0;
 }
 
-.podlovewebplayer_chapters .chaptertr:active .chapterplay a[rel=player] {
-	padding: 2px;
-	margin: -2px;
-	display: block;
-	-webkit-border-radius: 16px;
-	-moz-border-radius: 16px;
-	-o-border-radius: 16px;
-	border-radius: 16px;
+.podlovewebplayer_chapters .chaptertr:active {
+	color: #ffffff;
+	text-shadow: 0px 0px 1px #FFFFFF; 
+	filter: dropshadow(color=#FFFFFF, offx=0, offy=0); 
 }
 
 .podlovewebplayer_chapters td b {
@@ -465,8 +461,8 @@
 	transition: all 0.5s;
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .timecode code,
-.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .starttime code {
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .timecode span,
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .starttime span {
 	font-family: Courier, "Courier New", monospace;
 	text-align: right;
 }

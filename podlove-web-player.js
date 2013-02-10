@@ -410,7 +410,6 @@
 				var oddchapter = 'oddchapter';
 				if(parseInt(i)%2) { oddchapter = ''; }
 				var rowstring = '<tr class="chaptertr '+oddchapter+'" data-start="'+this.start+'" data-end="'+this.end+'">';
-				rowstring += '<td class="chapternr">'+(parseInt(i)+1)+'</td>';
 
 				if (params.chapterlinks != 'false') {
 					var linkclass = "";
@@ -422,6 +421,7 @@
 					//rowstring += '</td>';
 				}
 				rowstring += '<td class="starttime"><span>'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
+				//rowstring += '<td class="chapternr">'+(parseInt(i)+1)+'. </td>';
 				rowstring += '<td>'+this.title+'</td>';
 				rowstring += '<td class="timecode">'+"\n";
 				//rowstring += '<a class="deeplink" href="' + deeplink_chap;
@@ -565,7 +565,7 @@
 				return false;
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.currentbutton').click(function(){
-				window.prompt('the uri of the current position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')+'#t='+generateTimecode([player.currentTime]));
+				window.prompt('This URL directly points to the current playback position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')+'#t='+generateTimecode([player.currentTime]));
 				return false;
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.tweetbutton').click(function(){

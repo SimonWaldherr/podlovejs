@@ -1,6 +1,6 @@
-[submodule "mediaelement"]
-	path = mediaelement
-	url = git@github.com:johndyer/mediaelement.git
-[submodule "fontawesome"]
-	path = fontawesome
+[submodule "libs/fontawesome"]
+	path = libs/fontawesome
 	url = git@github.com:FortAwesome/Font-Awesome.git
+[submodule "libs/mediaelement"]
+	path = libs/mediaelement
+	url = https://github.com/johndyer/mediaelement

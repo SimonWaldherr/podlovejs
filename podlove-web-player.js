@@ -317,7 +317,7 @@
 			}
 			if (typeof params.chapters !== 'undefined') {
 				wrapper.find('.togglers').append(
-					'<a href="#" class="chaptertoggle infobuttons icon-list" title="show/hide chapters"></a>');
+					'<a href="#" class="chaptertoggle infobuttons icon-list-ul" title="show/hide chapters"></a>');
 			}
 			wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons icon-time" title="show/hide controls box"></a>')
 		}

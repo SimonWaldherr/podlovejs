@@ -41,7 +41,7 @@ if ( // Prevent conflicts with already running versions of PWP
 $podlovewebplayer_index = 1;
 define( 'PODLOVEWEBPLAYER_DIR', plugin_dir_url(__FILE__) );
 define( 'PODLOVEWEBPLAYER_PATH', plugin_dir_path(__FILE__) );
-define( 'PODLOVEWEBPLAYER_MEJS_DIR', PODLOVEWEBPLAYER_DIR . 'mediaelement/build/' );
+define( 'PODLOVEWEBPLAYER_MEJS_DIR', PODLOVEWEBPLAYER_DIR . 'libs/mediaelement/build/' );
 
 
 /* Activation and De-Activation */
@@ -90,8 +90,8 @@ add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 
 function podlovewebplayer_add_styles() {
 	if ( !is_admin() ) {
-		wp_enqueue_style( 'fontawesome', PODLOVEWEBPLAYER_DIR . 'fontawesome/css/font-awesome.min.css' );
-		wp_enqueue_style( 'mediaelementjs', PODLOVEWEBPLAYER_MEJS_DIR . 'mediaelementplayer.css' );
+		wp_enqueue_style( 'fontawesome', PODLOVEWEBPLAYER_DIR . 'libs/fontawesome/css/font-awesome.min.css' );
+		wp_enqueue_style( 'mediaelementjs', PODLOVEWEBPLAYER_MEJS_DIR . 'libs/mediaelementplayer.css' );
 		wp_enqueue_style( 'podlovewebplayer', PODLOVEWEBPLAYER_DIR . 'podlove-web-player.css' );
 	}
 }

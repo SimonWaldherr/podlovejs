@@ -119,7 +119,7 @@
 	-moz-border-radius-topright: 10px;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	background: url(mediaelement/build/background.png);
+	background: url(libs/mediaelement/build/background.png);
 	background: #111;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50, 50, 50, 0.9)), to(rgba(12, 12, 12, 0.9)));
 	background: -webkit-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
@@ -396,8 +396,8 @@
 	top: 4px;
 	text-indent: -1000px;
 	margin: 0 0 0 6px;
-	background: transparent url(mediaelement/build/controls.png) no-repeat 0 0;
-	background-image: url(mediaelement/build/controls.svg);
+	background: transparent url(libs/mediaelement/build/controls.png) no-repeat 0 0;
+	background-image: url(libs/mediaelement/build/controls.svg);
 
 }
 

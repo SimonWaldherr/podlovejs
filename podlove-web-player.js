@@ -392,7 +392,9 @@
 
 				// deeplink, start and end
 				var deeplink_chap = '#t=' + generateTimecode( [this.start, this.end] );
-				var rowstring = '<tr data-start="'+this.start+'" data-end="'+this.end+'">';
+				var oddchapter = 'oddchapter';
+				if(parseInt(i)%2) { oddchapter = ''; }
+				var rowstring = '<tr class="chaptertr '+oddchapter+'" data-start="'+this.start+'" data-end="'+this.end+'">';
 				rowstring += '<td class="chapternr">'+(parseInt(i)+1)+'</td>';
 
 				if (params.chapterlinks != 'false') {
@@ -404,7 +406,7 @@
 					rowstring += 'data-start="' + deeplink + '"' + linkclass + '><span>»</span></a>';
 					rowstring += '</td>';
 				}
-				rowstring += '<td class="starttime"><code>'+generateTimecode( [this.start] )+'</code></td>';
+				rowstring += '<td class="starttime"><code>'+generateTimecode( [Math.round(this.start)] )+'</code></td>';
 				rowstring += '<td>'+this.title+'</td>';
 				rowstring += '<td class="timecode">'+"\n";
 				//rowstring += '<a class="deeplink" href="' + deeplink_chap;
@@ -560,40 +562,33 @@
 		// chapters list
 		list
 			.show()
-			.delegate('a[rel=player]', 'click', function (e) {
+			.delegate('.chaptertr', 'click', function (e) {
 				if ($(this).closest('table').hasClass('linked_all') || $(this).closest('tr').hasClass('loaded')) {
 					e.preventDefault();
 					var mark = $(this).closest('tr'),
 						startTime = mark.data('start'),
 						endTime = mark.data('end');
 
-					if (mark.hasClass('active') && player.paused == false) {
-						mark.addClass('paused');
-						player.pause();
+					// If there is only one player also set deepLink
+					if (players.length === 1) {
+						// setFragmentURL('t=' + generateTimecode([startTime, endTime]));
+						setFragmentURL('t=' + generateTimecode([startTime]));
 					} else {
-						mark.addClass('highlight');
-						setTimeout(turnHighlightOff, 200);
-						// If there is only one player also set deepLink
-						if (players.length === 1) {
-							// setFragmentURL('t=' + generateTimecode([startTime, endTime]));
-							setFragmentURL('t=' + generateTimecode([startTime]));
+						if (canplay) {
+							// Basic Chapter Mark function (without deeplinking)
+							player.setCurrentTime(startTime);
 						} else {
-							if (canplay) {
-								// Basic Chapter Mark function (without deeplinking)
+							jqPlayer.bind('canplay', function () {
 								player.setCurrentTime(startTime);
-							} else {
-								jqPlayer.bind('canplay', function () {
-									player.setCurrentTime(startTime);
-								});
-							}
+							});
 						}
-
-						// flash fallback needs additional pause
-						if (player.pluginType == 'flash') {
-							player.pause();
-						}
-						player.play();
 					}
+
+					// flash fallback needs additional pause
+					if (player.pluginType == 'flash') {
+						player.pause();
+					}
+					player.play();
 				}
 				return false;
 			});

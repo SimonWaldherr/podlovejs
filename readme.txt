@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: gerritvanaaken
+Contributors: gerritvanaaken, simonwaldherr
 Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0

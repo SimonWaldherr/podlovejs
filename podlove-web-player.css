@@ -107,7 +107,6 @@
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td span {
-	color: #333!important;
 	font: normal 1em Menlo, Consolas, "Source Code Pro", "Vera Sans Mono", fixed!important;
 	text-align: right;
 }
@@ -431,10 +430,19 @@
 	background-position: 0 0;
 }
 
-.podlovewebplayer_chapters .chaptertr:active {
+.podlovewebplayer_chapters tr.chaptertr:active {
 	color: #ffffff;
-	text-shadow: 0px 0px 1px #FFFFFF; 
-	filter: dropshadow(color=#FFFFFF, offx=0, offy=0); 
+	-webkit-text-shadow: 0px 0px 3px #111111; 
+	-moz-text-shadow: 0px 0px 3px #111111; 
+	text-shadow: 0px 0px 3px #111111; 
+	background: #ffffff;
+	background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed));
+	background: -webkit-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+	background: -o-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+	background: -ms-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+	background: linear-gradient(to bottom, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
 }
 
 .podlovewebplayer_chapters td b {

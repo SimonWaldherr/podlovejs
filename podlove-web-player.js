@@ -375,6 +375,7 @@
 			var tempchapters = {};
 			var i = 0;
 			var maxchapterlength = 0;
+			var maxchapterstart  = 0;
 
 			//first round: kill empty rows and build structured object
 			$.each(params.chapters.split("\n"), function(){
@@ -393,6 +394,7 @@
 					this.end = 	tempchapters[parseInt(i)+1].start;
 					if(Math.round(this.end-this.start) > maxchapterlength) {
 						maxchapterlength = Math.round(this.end-this.start);
+						maxchapterstart = Math.round(tempchapters[parseInt(i)+1].start);
 					}
 				}
 			})
@@ -429,21 +431,14 @@
 				if(parseInt(i)%2) { oddchapter = ''; }
 				var rowstring = '<tr class="chaptertr '+oddchapter+'" data-start="'+this.start+'" data-end="'+this.end+'">';
 
-				if (params.chapterlinks != 'false') {
-					var linkclass = "";
-					if (params.chapterlinks != 'all') { linkclass = ' class="disabled"'; }
-					
-					//rowstring += '<td class="chapterplay">';
-					//rowstring += '<a rel="player" title="play chapter" ';
-					//rowstring += 'data-start="' + deeplink + '"' + linkclass + '><span>»</span></a>';
-					//rowstring += '</td>';
+				if((maxchapterstart >= 3600)&&(Math.round(this.start) < 3600)) {
+					rowstring += '<td class="starttime"><span>00:'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
+				} else {
+					rowstring += '<td class="starttime"><span>'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
 				}
-				rowstring += '<td class="starttime"><span>'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
-				//rowstring += '<td class="chapternr">'+(parseInt(i)+1)+'. </td>';
+
 				rowstring += '<td>'+this.title+'</td>';
 				rowstring += '<td class="timecode">'+"\n";
-				//rowstring += '<a class="deeplink" href="' + deeplink_chap;
-				//rowstring += '" title="chapter deeplink">#</a> '+"\n";
 				rowstring += '<span>' + this.duration + '</span>' + "\n";
 				rowstring += '</td>'+"\n";
 				rowstring += '</tr>';

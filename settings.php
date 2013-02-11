@@ -35,7 +35,6 @@ function podlovewebplayer_register_settings() {
   register_setting( 'podlovewebplayer_options', 'podlovewebplayer_options' );
 
   // audio section
-
   add_settings_section( 'podlovewebplayer_audio', 'Audio player defaults', false, 'podlovewebplayer' );
 
   add_settings_field( 
@@ -172,6 +171,12 @@ function podlovewebplayer_register_settings() {
         (instead of the top)";
     }, 'podlovewebplayer', 'podlovewebplayer_enclosures', array( 'label_for' => 'pwpenclosures3' )
   );
+
+  add_settings_section( 'podlovewebplayer_info', 'Info', function(){
+    $scriptname = explode('/wp-admin', $_SERVER["SCRIPT_FILENAME"]);
+    $dirname    = explode('/wp-content', dirname(__FILE__));
+    print "<p>This is <b>Version 1.3</b> of the <b>Podlove Web Player</b>.</p><p>The <b>including file</b> is: <code>wp-admin".$scriptname[1]."</code></p><p>The <b>PWP-directory</b> is: <code>wp-content".$dirname[1]."</code></p>\n\n";
+  }, 'podlovewebplayer' );
 }
 
 

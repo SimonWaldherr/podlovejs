@@ -3,4 +3,4 @@
 	url = git@github.com:FortAwesome/Font-Awesome.git
 [submodule "libs/mediaelement"]
 	path = libs/mediaelement
-	url = https://github.com/johndyer/mediaelement
+url=https://github.com/SimonWaldherr/mediaelement

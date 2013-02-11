@@ -314,10 +314,14 @@
 			
 			//
 			if (typeof params.summary !== 'undefined') {
+				var summaryActive = "";
+				if (params.summaryVisible == true) {
+					summaryActive = " active";
+				}
 				wrapper.find('.togglers').append(
 					'<a href="#" class="infowindow infobuttons icon-info-sign" title="more information on the episode"></a>');
 				wrapper.find('.podlovewebplayer_meta').after(
-					'<div class="summary">'+params.summary+'</div>');
+					'<div class="summary'+summaryActive+'">'+params.summary+'</div>');
 			}
 			if (typeof params.chapters !== 'undefined') {
 				wrapper.find('.togglers').append(
@@ -326,7 +330,12 @@
 			wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons icon-time" title="show/hide controls box"></a>')
 		}
 
-		wrapper.append('<div class="controlbox"></div>');
+		var timecontrolsActive = "";
+		if (params.summaryVisible == true) {
+			timecontrolsActive = " active";
+		}
+		wrapper.append('<div class="controlbox'+timecontrolsActive+'"></div>');
+		
 		if (typeof params.chapters !== 'undefined') {
 			wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a>'
 						+'<a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>')
@@ -347,12 +356,17 @@
 			if (params.chapterlinks != 'false') {
 				class_names += ' linked linked_'+params.chapterlinks;
 			}
-			var tablestring = '<div class="podlovewebplayer_chapterbox showonplay active"><table rel="'+player.id+'" class="'+class_names+'">';
-			tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
-			if (params.chapterlinks != 'false') {
-				tablestring += '<th scope="col">Play</th>';
+			var chaptersActive = "";
+			if (params.chaptersVisible == true) {
+				chaptersActive = " active";
 			}
-			tablestring += '<th scope="col">Title</th><th scope="col">Duration</th></tr></thead>';
+			var tablestring = '<div class="podlovewebplayer_chapterbox showonplay'+chaptersActive+'"><table rel="'+player.id+'" class="'+class_names+'">';
+			tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
+			tablestring += '<th scope="col">Chapter Number</th>';
+			tablestring += '<th scope="col">Start time</th>';
+			tablestring += '<th scope="col">Title</th>';
+			tablestring += '<th scope="col">Duration</th>';
+			tablestring += '</tr></thead>';
 			tablestring += '<tbody></tbody></table></div>';
 			wrapper.append(tablestring);
 			var table = wrapper.find('table[rel='+player.id+']');
@@ -360,6 +374,8 @@
 			//prepare row data
 			var tempchapters = {};
 			var i = 0;
+			var maxchapterlength = 0;
+			var maxchapterstart  = 0;
 
 			//first round: kill empty rows and build structured object
 			$.each(params.chapters.split("\n"), function(){
@@ -372,22 +388,40 @@
 				}
 			});
 
-			//second round: build actual dom table
+			//second round: collect more information
 			$.each(tempchapters, function(i){
-
+				if (typeof tempchapters[parseInt(i)+1] !== 'undefined') {
+					this.end = 	tempchapters[parseInt(i)+1].start;
+					if(Math.round(this.end-this.start) > maxchapterlength) {
+						maxchapterlength = Math.round(this.end-this.start);
+						maxchapterstart = Math.round(tempchapters[parseInt(i)+1].start);
+					}
+				}
+			})
+			
+			//third round: build actual dom table
+			$.each(tempchapters, function(i){
 				var deeplink = document.location;
 
 				var finalchapter = (typeof tempchapters[parseInt(i)+1] === 'undefined') ? true : false;
 				if (!finalchapter) {
 					this.end = 	tempchapters[parseInt(i)+1].start;
-					this.duration = generateTimecode([Math.round(this.end-this.start)]);
+					if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
+						this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
+					} else {
+						this.duration = generateTimecode([Math.round(this.end-this.start)]);
+					}
 				} else {
 					if (params.duration == 0) {
 						this.end = 9999999999;
 						this.duration = '…';
 					} else {
 						this.end = params.duration;
-						this.duration = generateTimecode([Math.round(params.duration-this.start)]);
+						if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
+							this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
+						} else {
+							this.duration = generateTimecode([Math.round(this.end-this.start)]);
+						}
 					}
 				}
 
@@ -396,23 +430,16 @@
 				var oddchapter = 'oddchapter';
 				if(parseInt(i)%2) { oddchapter = ''; }
 				var rowstring = '<tr class="chaptertr '+oddchapter+'" data-start="'+this.start+'" data-end="'+this.end+'">';
-				rowstring += '<td class="chapternr">'+(parseInt(i)+1)+'</td>';
 
-				if (params.chapterlinks != 'false') {
-					var linkclass = "";
-					if (params.chapterlinks != 'all') { linkclass = ' class="disabled"'; }
-					
-					rowstring += '<td class="chapterplay">';
-					rowstring += '<a rel="player" title="play chapter" ';
-					rowstring += 'data-start="' + deeplink + '"' + linkclass + '><span>»</span></a>';
-					rowstring += '</td>';
+				if((maxchapterstart >= 3600)&&(Math.round(this.start) < 3600)) {
+					rowstring += '<td class="starttime"><span>00:'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
+				} else {
+					rowstring += '<td class="starttime"><span>'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
 				}
-				rowstring += '<td class="starttime"><code>'+generateTimecode( [Math.round(this.start)] )+'</code></td>';
+
 				rowstring += '<td>'+this.title+'</td>';
 				rowstring += '<td class="timecode">'+"\n";
-				//rowstring += '<a class="deeplink" href="' + deeplink_chap;
-				//rowstring += '" title="chapter deeplink">#</a> '+"\n";
-				rowstring += '<code>' + this.duration + '</code>' + "\n";
+				rowstring += '<span>' + this.duration + '</span>' + "\n";
 				rowstring += '</td>'+"\n";
 				rowstring += '</tr>';
 				table.append(rowstring);	
@@ -475,9 +502,7 @@
 		
 		summary.each(function() {
 			$(this).data("height", $(this).height());
-			if (params.summaryVisible == true) {
-				$(this).addClass('active');
-			} else {
+			if (!$(this).hasClass('active')) {
 				$(this).height('0px');
 			}
 		})
@@ -494,11 +519,6 @@
 			});
 			metainfo.find('a.showcontrols').on('click', function(){
 				$(this).closest('.podlovewebplayer_wrapper').find('.controlbox').toggleClass('active');
-				if($(this).closest('.podlovewebplayer_wrapper').find('.controlbox').hasClass('active')) {
-					$(this).closest('.podlovewebplayer_wrapper').find('.controlbox').height('25px');
-				} else {
-					$(this).closest('.podlovewebplayer_wrapper').find('.controlbox').height('0px');
-				}
 				return false;
 			});
 			metainfo.find('.bigplay').on('click', function(){
@@ -558,7 +578,7 @@
 				return false;
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.currentbutton').click(function(){
-				window.prompt('the uri of the current position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')+'#t='+generateTimecode([player.currentTime]));
+				window.prompt('This URL directly points to the current playback position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')+'#t='+generateTimecode([player.currentTime]));
 				return false;
 			});
 			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.tweetbutton').click(function(){
@@ -605,6 +625,9 @@
 		chapterdiv.each(function() {
 			$(this).data("height", $(this).height());
 			$(this).height($(this).data("height"));
+			if(!$(this).hasClass('active')) {
+				$(this).height('0px');
+			}
 		})
 		
 		if (chapterdiv.length === 1) {
